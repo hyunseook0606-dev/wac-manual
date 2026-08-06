@@ -383,6 +383,34 @@
   color: var(--muted);
 }
 
+.box-ex {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  background: #f6f6f3;
+  border-left: 3px solid var(--line-strong);
+}
+
+.box-ex-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.box-ex ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.box-ex li {
+  margin: 0 0 3px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
 .box-type-card .label-frame {
   max-width: none;
 }

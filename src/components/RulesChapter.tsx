@@ -320,9 +320,17 @@ export const RULE_PAGES: RulePage[] = [
           <div className="box-type-card">
             <h4>무거운 짐 → 두면 (두 줄)</h4>
             <p>
-              예: 삼계탕 박스, 물결가루 박스, W 자체 박스 등 · 대략{" "}
-              <strong>10kg 초과</strong>로 무거울 때
+              박스가 무거워질 것 같으면 (대략 <strong>10kg 초과</strong>) 단면이
+              물결 <strong>두 줄</strong>인 박스를 씁니다.
             </p>
+            <div className="box-ex">
+              <span className="box-ex-label">이런 박스 쓰기</span>
+              <ul>
+                <li>삼계탕 박스</li>
+                <li>물결가루(치킨파우더) 박스</li>
+                <li>W 자체 박스</li>
+              </ul>
+            </div>
             <div className="label-frame">
               <img
                 src="/labels/box-double-wall.png"
@@ -333,7 +341,16 @@ export const RULE_PAGES: RulePage[] = [
           </div>
           <div className="box-type-card">
             <h4>가벼운 짐 → 한면 (한 줄)</h4>
-            <p>예: 김가루 박스, 떡볶이 박스 등</p>
+            <p>
+              가벼운 짐이면 단면이 물결 <strong>한 줄</strong>인 박스면 됩니다.
+            </p>
+            <div className="box-ex">
+              <span className="box-ex-label">이런 박스 쓰기</span>
+              <ul>
+                <li>김가루 박스 (예: 해농 넘버원)</li>
+                <li>떡볶이(떡) 박스</li>
+              </ul>
+            </div>
             <div className="label-frame">
               <img
                 src="/labels/box-single-wall.png"

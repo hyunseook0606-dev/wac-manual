@@ -257,10 +257,15 @@ def build():
         after=8,
     )
     P(doc, "무거운 짐 → 두면 (두 줄)", size=11, bold=True, after=4)
-    P(doc, "예: 삼계탕 · 물결가루 · W 자체 박스 등 (대략 10kg 초과)", size=10, after=4)
+    P(doc, "대략 10kg 초과로 무거울 때. 박스 예시:", size=10, after=2)
+    P(doc, "· 삼계탕 박스", size=10, after=1)
+    P(doc, "· 물결가루(치킨파우더) 박스", size=10, after=1)
+    P(doc, "· W 자체 박스", size=10, after=4)
     img(doc, LABELS / "box-double-wall.png", width_cm=12.0, caption="빨간 원 = 단면 물결 두 줄")
     P(doc, "가벼운 짐 → 한면 (한 줄)", size=11, bold=True, after=4)
-    P(doc, "예: 김가루 · 떡볶이 박스 등", size=10, after=4)
+    P(doc, "가벼운 짐일 때. 박스 예시:", size=10, after=2)
+    P(doc, "· 김가루 박스 (예: 해농 넘버원)", size=10, after=1)
+    P(doc, "· 떡볶이(떡) 박스", size=10, after=4)
     img(doc, LABELS / "box-single-wall.png", width_cm=12.0, caption="빨간 원 = 단면 물결 한 줄")
     P(doc, "한 줄: 무거우면 두면 · 가벼우면 한면", size=11, bold=True, after=4)
 

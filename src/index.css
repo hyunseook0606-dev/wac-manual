@@ -1,0 +1,321 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+:root {
+  --bg: #ebeae6;
+  --sidebar: #161616;
+  --sidebar-muted: #a3a29c;
+  --paper: #fffcf7;
+  --ink: #161616;
+  --muted: #5f5e5a;
+  --line: #ddd9d0;
+  --line-strong: #161616;
+  --a: #1f5c45;
+  --a-bg: #e8f3ee;
+  --b: #1d4f7c;
+  --b-bg: #e8f0f7;
+  --r: #8a4b16;
+  --r-bg: #f6eee4;
+  --danger: #b42318;
+  --accent: #c45c16;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--sidebar);
+  color: #f5f3ee;
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+.brand {
+  display: grid;
+  gap: 6px;
+}
+
+.brand-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sidebar-muted);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.brand p {
+  margin: 0;
+  color: var(--sidebar-muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.toc {
+  display: grid;
+  gap: 6px;
+}
+
+.toc-label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sidebar-muted);
+}
+
+.toc-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: #d8d5cd;
+  padding: 11px 12px;
+  border-radius: 8px;
+}
+
+.toc-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.toc-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.toc-btn.active {
+  background: #fff;
+  color: #161616;
+}
+
+.toc-btn span {
+  display: grid;
+  gap: 2px;
+}
+
+.toc-btn strong {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.toc-btn em {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.72;
+}
+
+.sidebar-foot {
+  margin-top: auto;
+  color: var(--sidebar-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.main {
+  padding: 28px 24px 48px;
+  overflow: auto;
+}
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(22, 22, 22, 0.06);
+  min-height: calc(100vh - 76px);
+}
+
+.page-inner {
+  padding: 40px 44px 48px;
+}
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.page-head h2 {
+  margin: 0 0 6px;
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.page-head p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.page-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.pager button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.pager button:hover {
+  background: #161616;
+  color: #fff;
+}
+
+.pager button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pager button:disabled:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+.pager button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mobile-bar {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar.open {
+    display: flex;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(320px, 86vw);
+    z-index: 50;
+    height: 100%;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    border: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .mobile-bar button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--ink);
+    background: #fff;
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .mobile-bar button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .page-inner {
+    padding: 28px 20px 36px;
+  }
+}

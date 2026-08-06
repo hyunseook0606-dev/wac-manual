@@ -56,16 +56,16 @@ def main() -> None:
         rx=48,
         ry=62,
     )
-    # 가벼운: 앞면 뚜껑 단면(물결 한 줄) 좌측
+    # 가벼운: 앞면 뚜껑 단면 한가운데(물결 한 줄이 제일 잘 보임)
     annotate(
         LABELS / "box-light-raw.png",
         LABELS / "box-single-wall.png",
         "가벼운 박스 → 한면(한 줄)",
         "단면이 물결 한 줄인 박스 사용",
-        cx=170,
-        cy=338,
-        rx=78,
-        ry=44,
+        cx=450,
+        cy=348,
+        rx=120,
+        ry=55,
     )
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""다음 인턴용 — 메뉴얼 수정 가이드 Word 생성."""
+"""다음 인턴용 — 메뉴얼 수정 가이드 Word 생성 (단순 버전)."""
 from pathlib import Path
 
 from docx import Document
@@ -9,10 +9,10 @@ from docx.shared import Cm, Pt, RGBColor
 
 ROOT = Path(r"C:\Users\82103\Desktop\wac 메뉴얼 만들기")
 OUT = ROOT / "메뉴얼_수정_가이드_인턴용.docx"
+DOCS = ROOT / "wac-manual-app" / "docs" / "메뉴얼_수정_가이드_인턴용.docx"
 
 DARK = RGBColor(28, 28, 28)
 MUTED = RGBColor(100, 100, 100)
-ACCENT = RGBColor(180, 70, 20)
 
 
 def font(run, size=11, bold=False, color=None):
@@ -29,14 +29,14 @@ def P(doc, text, size=11, bold=False, after=6, color=None, align=None):
     if align is not None:
         p.alignment = align
     p.paragraph_format.space_after = Pt(after)
-    p.paragraph_format.line_spacing = 1.35
+    p.paragraph_format.line_spacing = 1.4
     r = p.add_run(text)
     font(r, size=size, bold=bold, color=color or DARK)
     return p
 
 
-def H(doc, text, size=16):
-    P(doc, text, size=size, bold=True, after=10)
+def H(doc, text, size=15):
+    P(doc, text, size=size, bold=True, after=8)
 
 
 def bullet(doc, text, size=11):
@@ -63,76 +63,94 @@ def build():
     sec.left_margin = Cm(2.2)
     sec.right_margin = Cm(2.2)
 
-    P(doc, "WAC 창고 메뉴얼 — 수정 가이드", size=22, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, after=8)
-    P(doc, "다음 인턴·담당자용 (쉽게 고치는 방법)", size=12, color=MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, after=20)
-
-    H(doc, "1. 이게 뭔가요?")
     P(
         doc,
-        "창고 업무 전자 메뉴얼 웹사이트입니다. 주소는 아래와 같습니다.",
-        after=4,
+        "WAC 창고 메뉴얼 — 수정 가이드",
+        size=20,
+        bold=True,
+        align=WD_ALIGN_PARAGRAPH.CENTER,
+        after=6,
     )
-    P(doc, "https://wac-warehouse-manual.vercel.app", size=11, bold=True, after=8)
-    P(doc, "코드·사진은 GitHub에 공개되어 있습니다.", after=4)
-    P(doc, "https://github.com/hyunseook0606-dev/wac-manual", size=11, bold=True, after=12)
+    P(
+        doc,
+        "인턴용 · 복잡하게 안 해도 됩니다",
+        size=12,
+        color=MUTED,
+        align=WD_ALIGN_PARAGRAPH.CENTER,
+        after=18,
+    )
 
-    H(doc, "2. 어디에 무엇이 있나요?")
-    bullet(doc, "src/components/RulesChapter.tsx  →  작업 수칙 글·순서 (가장 자주 고침)")
-    bullet(doc, "src/components/MapChapter.tsx  →  창고 도면 화면")
-    bullet(doc, "src/components/CoverChapter.tsx  →  시작 화면")
-    bullet(doc, "public/labels/  →  사진·라벨 이미지 (png)")
-    bullet(doc, "scripts/build_word_manual.py  →  인쇄용 Word 메뉴얼 다시 만들기")
+    H(doc, "한 줄 요약")
+    P(
+        doc,
+        "GitHub에서 파일 받고 → Cursor / Claude Code 같은 AI한테 "
+        "『이거 고쳐줘』라고 말하면 됩니다.",
+        bold=True,
+        after=14,
+    )
+
+    H(doc, "1. 파일 받기")
+    P(doc, "메뉴얼 원본은 여기 있습니다.", after=4)
+    P(doc, "https://github.com/hyunseook0606-dev/wac-manual", size=11, bold=True, after=8)
+    numbered(doc, "위 주소 들어가기")
+    numbered(doc, "초록 Code 버튼 → Download ZIP (또는 Clone)")
+    numbered(doc, "압축 풀고 폴더를 연다")
     P(doc, "", after=4)
 
-    H(doc, "3. 글만 고치고 싶을 때 (제일 흔함)")
-    numbered(doc, "GitHub에서 wac-manual 저장소를 연다")
-    numbered(doc, "src/components/RulesChapter.tsx 파일을 연다")
-    numbered(doc, "원하는 문장을 고친다 (규칙 제목·설명·순서)")
-    numbered(doc, "Commit changes → main에 저장")
-    numbered(doc, "1~2분 후 웹사이트(Vercel)에 자동 반영되는지 확인")
+    H(doc, "2. AI한테 시키기")
     P(
         doc,
-        "Tip: RULE_PAGES 배열 안에 규칙이 페이지 단위로 들어 있습니다. 새 규칙은 그 배열에 항목을 추가하면 됩니다.",
+        "Cursor든 Claude Code든 VS Code + AI든, 익숙한 걸로 폴더를 연 다음 "
+        "원하는 말을 하면 됩니다. 예:",
+        after=8,
+    )
+    bullet(doc, "수칙 05에 박스 예시 문장 추가해줘")
+    bullet(doc, "이 사진으로 가벼운 박스 예시 바꿔줘")
+    bullet(doc, "워드 메뉴얼도 웹이랑 맞게 다시 만들어줘")
+    P(
+        doc,
+        "어디 파일을 고칠지 외울 필요 없습니다. AI가 찾아서 고칩니다.",
         size=10,
         color=MUTED,
-        after=12,
+        after=14,
     )
 
-    H(doc, "4. 사진을 바꾸고 싶을 때")
-    numbered(doc, "새 사진을 public/labels/ 폴더에 넣는다 (예: my-photo.png)")
-    numbered(doc, "RulesChapter.tsx에서 이미지 경로를 /labels/my-photo.png 로 바꾼다")
-    numbered(doc, "GitHub에 커밋하면 웹에 반영된다")
-    P(doc, "", after=4)
+    H(doc, "3. 결과물 어디에 올리나? (편한 걸로)")
+    P(doc, "공식 사이트에 꼭 올릴 필요 없습니다. 아래 중 하나면 됩니다.", after=8)
+    bullet(
+        doc,
+        "지금 쓰는 공식 웹: https://wac-warehouse-manual.vercel.app "
+        "(권한 있으면 GitHub에 올린 뒤 반영)",
+    )
+    bullet(doc, "본인 Vercel에 따로 배포해도 됨")
+    bullet(doc, "고친 파일·Word만 구글 드라이브 / 카톡으로 공유해도 됨")
+    P(
+        doc,
+        "배포·권한 설정이 어렵면 드라이브로 넘기면 됩니다.",
+        size=10,
+        color=MUTED,
+        after=14,
+    )
 
-    H(doc, "5. 인쇄용 Word도 같이 고치려면")
-    numbered(doc, "scripts/build_word_manual.py 내용도 웹과 맞게 수정")
-    numbered(doc, "컴퓨터에 Python + python-docx 설치 후 실행:")
-    P(doc, "python scripts/build_word_manual.py", size=10, bold=True, after=6)
-    numbered(doc, "만들어진 WAC_창고_업무_메뉴얼.docx 를 확인·배포")
-    P(doc, "", after=4)
-
-    H(doc, "6. 로컬에서 미리보기 (선택)")
-    numbered(doc, "저장소를 내 컴퓨터에 Clone")
-    numbered(doc, "폴더에서 npm install")
-    numbered(doc, "npm run dev 실행 후 브라우저에서 확인")
-    P(doc, "", after=4)
-
-    H(doc, "7. 막히면")
-    bullet(doc, "GitHub 저장소 Issues에 메모를 남기거나")
-    bullet(doc, "Cursor / VS Code로 폴더를 열고 RulesChapter.tsx만 검색해서 수정")
-    bullet(doc, "Vercel 대시보드에서 최근 Deploy가 성공했는지 확인")
-    P(doc, "", after=8)
+    H(doc, "4. 참고 (필요할 때만)")
+    bullet(doc, "웹 주소: https://wac-warehouse-manual.vercel.app")
+    bullet(doc, "인쇄용 Word: 보통 WAC_창고_업무_메뉴얼.docx")
+    bullet(doc, "로컬로 화면만 보려면: npm install → npm run dev")
+    P(doc, "", after=10)
 
     P(
         doc,
-        "핵심 한 줄: 글·사진은 GitHub에서 고치면 → Vercel 웹이 따라 업데이트됩니다.",
+        "핵심: 다운받기 → AI에게 말하기 → 드라이브든 본인 배포든 편한 방식으로 공유.",
         size=12,
         bold=True,
         after=4,
     )
 
     doc.save(OUT)
+    DOCS.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(DOCS)
     print("saved", OUT)
+    print("saved", DOCS)
 
 
 if __name__ == "__main__":

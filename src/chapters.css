@@ -31,7 +31,8 @@
 
 .cover h3 {
   margin: 0;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+  font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.15;
   max-width: 16ch;
@@ -93,29 +94,120 @@
 }
 
 .rule-callout {
-  margin: 12px 0 16px;
-  padding: 14px 16px;
+  margin: 0 0 var(--space-lg);
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid #f0d4b8;
   border-left: 4px solid var(--accent);
-  background: #fff;
-  border-top: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: var(--accent-bg);
 }
 
 .rule-callout p {
   margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: var(--lh);
 }
 
 .rule-callout-next {
   margin-top: 10px !important;
 }
 
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: var(--space-md) 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.callout-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.callout-body {
+  display: grid;
+  gap: 4px;
+}
+
+.callout-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.callout-body p,
+.callout-body li {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: var(--lh);
+}
+
+.callout-body ul {
+  margin: 4px 0 0;
+  padding-left: 1.15em;
+  display: grid;
+  gap: 4px;
+}
+
+.callout-tip {
+  background: var(--tip-bg);
+  border-color: #c9dbeb;
+}
+
+.callout-tip .callout-icon {
+  background: var(--tip);
+  color: #fff;
+}
+
+.callout-tip .callout-label {
+  color: var(--tip);
+}
+
+.callout-warn {
+  background: var(--danger-bg);
+  border-color: #f0c7c2;
+}
+
+.callout-warn .callout-icon {
+  background: var(--danger);
+  color: #fff;
+}
+
+.callout-warn .callout-label {
+  color: var(--danger);
+}
+
+.callout-key {
+  background: var(--key-bg);
+  border-color: #c5dfd2;
+}
+
+.callout-key .callout-icon {
+  background: var(--key);
+  color: #fff;
+}
+
+.callout-key .callout-label {
+  color: var(--key);
+}
+
 .pack-rules {
   display: grid;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 14px;
+  margin-top: 10px;
 }
 
 .pack-rule {
@@ -260,15 +352,18 @@
 }
 
 .example-heading {
-  margin: 22px 0 6px;
-  font-size: 1.02rem;
-  letter-spacing: -0.02em;
+  margin: 28px 0 10px;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
 .example-lead {
-  margin: 0 0 10px !important;
+  margin: 0 0 14px !important;
   color: var(--muted);
-  font-size: 0.92rem !important;
+  font-size: 1rem !important;
+  line-height: var(--lh) !important;
 }
 
 .example-hero {
@@ -288,9 +383,10 @@
 }
 
 .rule-note-strong {
-  margin-top: 14px;
-  font-size: 1rem;
+  margin-top: 18px;
+  font-size: 1.02rem;
   color: var(--ink);
+  line-height: var(--lh);
 }
 
 .knh-examples {
@@ -368,25 +464,29 @@
 .box-type-card {
   border: 1px solid var(--line);
   background: #fff;
-  padding: 14px 16px 16px;
+  padding: 18px 18px 20px;
+  border-radius: 10px;
 }
 
 .box-type-card h4 {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
+  margin: 0 0 10px;
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .box-type-card > p {
-  margin: 0 0 12px !important;
-  font-size: 0.92rem !important;
-  line-height: 1.55 !important;
+  margin: 0 0 14px !important;
+  font-size: 0.96rem !important;
+  line-height: var(--lh) !important;
   color: var(--muted);
 }
 
 .box-ex {
-  margin: 0 0 14px;
-  padding: 10px 12px;
+  margin: 0 0 16px;
+  padding: 12px 14px;
   background: #f6f6f3;
+  border-radius: 8px;
   border-left: 3px solid var(--line-strong);
 }
 
@@ -512,7 +612,7 @@
   display: grid;
   grid-template-columns: 56px 1fr;
   gap: 8px 18px;
-  padding-bottom: 28px;
+  padding-bottom: 36px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -530,29 +630,32 @@
 }
 
 .rule h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
 }
 
 .rule p,
 .rule li {
   margin: 0;
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: var(--lh);
 }
 
 .rule ul {
-  margin: 8px 0 0;
-  padding-left: 1.15rem;
+  margin: 10px 0 0;
+  padding-left: 1.2rem;
   display: grid;
-  gap: 4px;
+  gap: 6px;
 }
 
 .rule-note {
-  margin-top: 8px;
+  margin-top: 10px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  line-height: var(--lh);
 }
 
 .pick-order {
@@ -1147,11 +1250,11 @@
 /* ECOUNT */
 .ecount-page {
   display: grid;
-  gap: 28px;
+  gap: var(--space-lg);
 }
 
 .ecount-step {
-  padding-bottom: 22px;
+  padding: 0 0 var(--space-lg);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1164,58 +1267,69 @@
   display: flex;
   align-items: baseline;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .ecount-step-no {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--b);
 }
 
 .ecount-step h3 {
   margin: 0;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
+  font-size: 1.28rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
 }
 
-.ecount-step > p {
-  margin: 0 0 8px;
+.ecount-step-list {
+  margin: 0 0 12px;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 8px;
+}
+
+.ecount-step-list li {
+  font-size: 1rem;
+  line-height: var(--lh);
   color: var(--ink);
-  font-size: 0.98rem;
-  line-height: 1.55;
 }
 
 .ecount-examples {
   display: grid;
-  gap: 8px;
-  margin: 12px 0 14px;
+  gap: 10px;
+  margin: 14px 0 16px;
 }
 
 .ecount-ex {
   display: grid;
-  gap: 4px;
-  padding: 12px 14px;
-  background: #f3f6f9;
-  border-left: 3px solid var(--b);
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--tip-bg);
+  border-radius: 10px;
+  border: 1px solid #d5e4f2;
 }
 
 .ecount-ex strong {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .ecount-ex span {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--muted);
-  line-height: 1.45;
+  line-height: var(--lh);
 }
 
 .ecount-frame {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .ecount-frame img {
   width: 100%;
   border: 1px solid var(--line);
+  border-radius: 8px;
 }

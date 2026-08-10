@@ -23,8 +23,8 @@ export const RULE_PAGES: RulePage[] = [
             <strong>패킹리스트 출력 후, 인턴이 할 일</strong>
           </p>
           <p className="rule-callout-next">
-            거래처코드 맨 앞 글자(K / N / H)와 거래처명을 보고 아래 순서로
-            분류합니다.
+            거래처코드 맨 앞 글자(<strong>K / N / H</strong>)와 거래처명을 보고
+            아래 순서로 분류합니다.
           </p>
         </div>
 
@@ -288,13 +288,27 @@ export const RULE_PAGES: RulePage[] = [
           </article>
         </div>
 
-        <p className="rule-note rule-note-strong">
-          기억:{" "}
-          <strong>
-            더블체크 확인 → 온도 분리 → (섞으면) 칸막이 → 분말은 단독 →
-            깻잎·청양고추는 냉장·냉동과 금지
-          </strong>
-        </p>
+        <div className="callout callout-warn">
+          <span className="callout-icon">!</span>
+          <div className="callout-body">
+            <span className="callout-label">주의</span>
+            <p>
+              깻잎·청양고추는 냉장·냉동과 합치면 안 됩니다. 따로 포장하세요.
+            </p>
+          </div>
+        </div>
+
+        <div className="callout callout-key">
+          <span className="callout-icon">✓</span>
+          <div className="callout-body">
+            <span className="callout-label">기억</span>
+            <ul>
+              <li>더블체크 확인</li>
+              <li>온도 분리 → (섞으면) 칸막이</li>
+              <li>분말은 단독 · 깻잎/청양고추는 냉장·냉동과 금지</li>
+            </ul>
+          </div>
+        </div>
       </>
     ),
   },
@@ -312,8 +326,16 @@ export const RULE_PAGES: RulePage[] = [
           </p>
           <p className="rule-callout-next">
             가벼운 짐이면 단면이 <strong>물결 한 줄(한면)</strong>인 박스면
-            됩니다. 박스 모서리 단면을 보고 고르면 됩니다.
+            됩니다.
           </p>
+        </div>
+
+        <div className="callout callout-tip">
+          <span className="callout-icon">TIP</span>
+          <div className="callout-body">
+            <span className="callout-label">Tip</span>
+            <p>박스 모서리 단면을 보고 물결이 한 줄인지 두 줄인지 확인하세요.</p>
+          </div>
         </div>
 
         <div className="box-type-grid">
@@ -361,10 +383,15 @@ export const RULE_PAGES: RulePage[] = [
           </div>
         </div>
 
-        <p className="rule-note rule-note-strong">
-          한 줄: <strong>무거우면 두면 · 가벼우면 한면</strong> (모서리 단면
-          확인)
-        </p>
+        <div className="callout callout-key">
+          <span className="callout-icon">✓</span>
+          <div className="callout-body">
+            <span className="callout-label">한 줄 요약</span>
+            <p>
+              <strong>무거우면 두면 · 가벼우면 한면</strong> (모서리 단면 확인)
+            </p>
+          </div>
+        </div>
       </>
     ),
   },

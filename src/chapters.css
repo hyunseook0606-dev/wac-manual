@@ -1332,4 +1332,5 @@
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
+  image-rendering: -webkit-optimize-contrast;
 }

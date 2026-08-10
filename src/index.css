@@ -311,8 +311,6 @@ img {
   width: min(220px, 58vw);
   height: auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(22, 22, 22, 0.12);
   animation: hub-logo-float 4s ease-in-out infinite;
 }
 

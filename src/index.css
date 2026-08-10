@@ -289,8 +289,8 @@ img {
   place-items: center;
   padding: 40px 20px;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(31, 92, 69, 0.12), transparent),
-    radial-gradient(ellipse 70% 45% at 90% 10%, rgba(29, 79, 124, 0.14), transparent),
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 125, 0, 0.08), transparent),
+    radial-gradient(ellipse 70% 45% at 90% 10%, rgba(29, 79, 124, 0.12), transparent),
     var(--bg);
 }
 
@@ -299,7 +299,77 @@ img {
 }
 
 .hub-hero {
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+}
+
+.hub-logo-wrap {
+  margin-bottom: 24px;
+  animation: hub-fade-up 0.7s ease both;
+}
+
+.hub-logo {
+  width: min(220px, 58vw);
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(22, 22, 22, 0.12);
+  animation: hub-logo-float 4s ease-in-out infinite;
+}
+
+.hub-animate {
+  opacity: 0;
+  animation: hub-fade-up 0.65s ease forwards;
+}
+
+.hub-animate-1 {
+  animation-delay: 0.15s;
+}
+
+.hub-animate-2 {
+  animation-delay: 0.28s;
+}
+
+.hub-animate-3 {
+  animation-delay: 0.4s;
+}
+
+.hub-animate-4 {
+  animation-delay: 0.52s;
+}
+
+.hub-animate-5 {
+  animation-delay: 0.64s;
+}
+
+@keyframes hub-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hub-logo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-logo-wrap,
+  .hub-logo,
+  .hub-animate {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .hub-kicker {
@@ -346,12 +416,16 @@ img {
   padding: 28px 24px;
   border-radius: 4px;
   min-height: 200px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 .hub-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   background: #fff;
+  box-shadow: 0 14px 32px rgba(22, 22, 22, 0.08);
 }
 
 .hub-card-ecount {

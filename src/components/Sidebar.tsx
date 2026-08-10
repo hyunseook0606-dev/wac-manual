@@ -1,12 +1,13 @@
 import {
   BookOpenIcon,
   ClipboardDocumentCheckIcon,
+  HomeIcon,
   MapIcon,
 } from "@heroicons/react/24/outline";
-import type { ChapterId } from "../types";
+import type { WarehouseChapterId } from "../types";
 
 const TOC: {
-  id: ChapterId;
+  id: WarehouseChapterId;
   title: string;
   desc: string;
   icon: typeof BookOpenIcon;
@@ -32,19 +33,25 @@ const TOC: {
 ];
 
 type Props = {
-  chapter: ChapterId;
-  onSelect: (id: ChapterId) => void;
+  chapter: WarehouseChapterId;
+  onSelect: (id: WarehouseChapterId) => void;
+  onHome: () => void;
   open: boolean;
 };
 
-export function Sidebar({ chapter, onSelect, open }: Props) {
+export function Sidebar({ chapter, onSelect, onHome, open }: Props) {
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
       <div className="brand">
-        <p className="brand-kicker">WAC Intern Manual</p>
-        <h1>창고 업무 전자 메뉴얼</h1>
-        <p>작업 수칙과 위치 도면을 한곳에서 확인합니다.</p>
+        <p className="brand-kicker">Warehouse Manual</p>
+        <h1>창고 메뉴얼</h1>
+        <p>피킹·패킹 수칙과 본사창고 도면</p>
       </div>
+
+      <button type="button" className="toc-home" onClick={onHome}>
+        <HomeIcon />
+        인턴 WMART 홈
+      </button>
 
       <nav className="toc" aria-label="목차">
         <p className="toc-label">Contents</p>
@@ -70,15 +77,15 @@ export function Sidebar({ chapter, onSelect, open }: Props) {
       </nav>
 
       <div className="sidebar-foot">
-        F(냉동) 구역 제외 · ESA009M 기준
+        본사창고 기준 · F(냉동) 구역 제외
         <br />
-        라벨 이미지 · 실제 부착 스티커
+        ECOUNT와 별도 메뉴얼
       </div>
     </aside>
   );
 }
 
-export const CHAPTER_TITLE: Record<ChapterId, string> = {
+export const CHAPTER_TITLE: Record<WarehouseChapterId, string> = {
   cover: "시작하기",
   rules: "창고 작업 수칙",
   map: "창고 도면",

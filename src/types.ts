@@ -26,11 +26,16 @@ export type LocationData = {
   byRack: Record<string, Item[]>;
 };
 
-/** Sidebar chapters (검색 제외) */
-export type ChapterId = "cover" | "rules" | "map";
+/** Top-level manuals (separate from each other) */
+export type ManualId = "hub" | "warehouse" | "ecount";
 
-/** Flat page flow for prev/next + print-friendly rule splits */
-export type ManualPage =
+/** Warehouse sidebar chapters */
+export type WarehouseChapterId = "cover" | "rules" | "map";
+
+/** ECOUNT sidebar chapters */
+export type EcountChapterId = "sales-entry";
+
+export type WarehousePage =
   | { id: "cover"; chapter: "cover"; title: string; sub: string }
   | {
       id: string;
@@ -40,3 +45,17 @@ export type ManualPage =
       sub: string;
     }
   | { id: "map"; chapter: "map"; title: string; sub: string };
+
+export type EcountPage = {
+  id: string;
+  chapter: EcountChapterId;
+  pageIndex: number;
+  title: string;
+  sub: string;
+};
+
+/** @deprecated use WarehouseChapterId */
+export type ChapterId = WarehouseChapterId;
+
+/** @deprecated use WarehousePage */
+export type ManualPage = WarehousePage;

@@ -256,6 +256,133 @@ img {
   height: 18px;
 }
 
+.toc-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f3ee;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.toc-home:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.toc-home svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sidebar-ecount {
+  background: #142028;
+}
+
+.hub-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(31, 92, 69, 0.12), transparent),
+    radial-gradient(ellipse 70% 45% at 90% 10%, rgba(29, 79, 124, 0.14), transparent),
+    var(--bg);
+}
+
+.hub {
+  width: min(880px, 100%);
+}
+
+.hub-hero {
+  margin-bottom: 28px;
+}
+
+.hub-kicker {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hub-hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.hub-lead {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.hub-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 720px) {
+  .hub-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hub-card {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 28px 24px;
+  border-radius: 4px;
+  min-height: 200px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hub-card:hover {
+  transform: translateY(-2px);
+  background: #fff;
+}
+
+.hub-card-ecount {
+  border-color: #1d4f7c;
+}
+
+.hub-card-no {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.hub-card strong {
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+}
+
+.hub-card em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.hub-card-cta {
+  margin-top: auto;
+  padding-top: 18px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
 .mobile-bar {
   display: none;
 }

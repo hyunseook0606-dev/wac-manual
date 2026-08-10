@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -6,17 +6,28 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import locationData from "./data/locations.json";
-import type { ChapterId, LocationData, ManualPage } from "./types";
+import type {
+  EcountChapterId,
+  LocationData,
+  ManualId,
+  WarehouseChapterId,
+  WarehousePage,
+} from "./types";
 import { CHAPTER_TITLE, Sidebar } from "./components/Sidebar";
+import {
+  ECOUNT_CHAPTER_TITLE,
+  EcountSidebar,
+} from "./components/EcountSidebar";
 import { CoverChapter } from "./components/CoverChapter";
 import { RulesChapter, RULE_PAGES } from "./components/RulesChapter";
 import { MapChapter } from "./components/MapChapter";
+import { HubPage } from "./components/HubPage";
+import { EcountChapter, ECOUNT_PAGES } from "./components/EcountChapter";
 import "./chapters.css";
 
 const DATA = locationData as LocationData;
 
-/** 전체 페이지 흐름: 시작 → 수칙(쪽 나눔) → 도면 */
-const PAGES: ManualPage[] = [
+const WAREHOUSE_PAGES: WarehousePage[] = [
   {
     id: "cover",
     chapter: "cover",
@@ -34,45 +45,188 @@ const PAGES: ManualPage[] = [
     id: "map",
     chapter: "map",
     title: "창고 도면",
-    sub: "아래 · 패킹하는 곳 · 왼 A / 오 B",
+    sub: "본사창고 · 아래 패킹하는 곳 · 왼 A / 오 B",
   },
 ];
 
-function firstPageOf(chapter: ChapterId): number {
-  return PAGES.findIndex((p) => p.chapter === chapter);
+function parseHash(): { manual: ManualId; page: number } {
+  const raw = window.location.hash.replace(/^#\/?/, "");
+  if (!raw || raw === "hub") return { manual: "hub", page: 0 };
+  if (raw.startsWith("warehouse")) {
+    const n = Number(raw.split("/")[1] ?? 0);
+    return {
+      manual: "warehouse",
+      page: Number.isFinite(n) ? Math.max(0, n) : 0,
+    };
+  }
+  if (raw.startsWith("ecount")) {
+    const n = Number(raw.split("/")[1] ?? 0);
+    return {
+      manual: "ecount",
+      page: Number.isFinite(n) ? Math.max(0, n) : 0,
+    };
+  }
+  return { manual: "hub", page: 0 };
+}
+
+function setHash(manual: ManualId, page = 0) {
+  if (manual === "hub") {
+    window.location.hash = "#/";
+    return;
+  }
+  window.location.hash = `#/${manual}/${page}`;
+}
+
+function firstWarehousePage(chapter: WarehouseChapterId): number {
+  return WAREHOUSE_PAGES.findIndex((p) => p.chapter === chapter);
 }
 
 export default function App() {
-  const [pageIdx, setPageIdx] = useState(0);
+  const initial = parseHash();
+  const [manual, setManual] = useState<ManualId>(initial.manual);
+  const [pageIdx, setPageIdx] = useState(initial.page);
   const [navOpen, setNavOpen] = useState(false);
 
-  const page = PAGES[pageIdx];
-  const chapter = page.chapter;
+  useEffect(() => {
+    const onHash = () => {
+      const next = parseHash();
+      setManual(next.manual);
+      setPageIdx(next.page);
+      setNavOpen(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
 
-  const goPage = (idx: number) => {
-    setPageIdx(Math.max(0, Math.min(PAGES.length - 1, idx)));
-    setNavOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const warehousePage = WAREHOUSE_PAGES[pageIdx] ?? WAREHOUSE_PAGES[0];
+  const ecountPage = ECOUNT_PAGES[pageIdx] ?? ECOUNT_PAGES[0];
 
-  const goChapter = (id: ChapterId) => {
-    goPage(firstPageOf(id));
-  };
-
-  const body = useMemo(() => {
-    switch (page.chapter) {
+  const warehouseBody = useMemo(() => {
+    switch (warehousePage.chapter) {
       case "cover":
         return <CoverChapter />;
       case "rules":
-        return <RulesChapter pageIndex={page.rulePage} />;
+        return <RulesChapter pageIndex={warehousePage.rulePage} />;
       case "map":
         return <MapChapter data={DATA} initialRack={null} />;
     }
-  }, [page]);
+  }, [warehousePage]);
+
+  const goHub = () => setHash("hub");
+  const openWarehouse = () => setHash("warehouse", 0);
+  const openEcount = () => setHash("ecount", 0);
+
+  const goWarehousePage = (idx: number) => {
+    const clamped = Math.max(0, Math.min(WAREHOUSE_PAGES.length - 1, idx));
+    setHash("warehouse", clamped);
+  };
+
+  const goEcountPage = (idx: number) => {
+    const clamped = Math.max(0, Math.min(ECOUNT_PAGES.length - 1, idx));
+    setHash("ecount", clamped);
+  };
+
+  const goWarehouseChapter = (id: WarehouseChapterId) => {
+    goWarehousePage(firstWarehousePage(id));
+  };
+
+  if (manual === "hub") {
+    return (
+      <div className="hub-shell">
+        <HubPage onOpenWarehouse={openWarehouse} onOpenEcount={openEcount} />
+      </div>
+    );
+  }
+
+  if (manual === "ecount") {
+    const chapter: EcountChapterId = "sales-entry";
+    return (
+      <div className="app-shell">
+        <EcountSidebar
+          chapter={chapter}
+          pageIndex={Math.min(pageIdx, ECOUNT_PAGES.length - 1)}
+          onSelectPage={goEcountPage}
+          onHome={goHub}
+          open={navOpen}
+        />
+        <main className="main">
+          <div className="mobile-bar">
+            <button
+              type="button"
+              onClick={() => setNavOpen((v) => !v)}
+              aria-label="목차"
+            >
+              {navOpen ? <XMarkIcon /> : <Bars3Icon />}
+              목차
+            </button>
+            <strong>ECOUNT 메뉴얼</strong>
+          </div>
+          {navOpen ? (
+            <button
+              type="button"
+              className="nav-backdrop"
+              aria-label="목차 닫기"
+              onClick={() => setNavOpen(false)}
+            />
+          ) : null}
+          <article className="page">
+            <div className="page-inner">
+              <header className="page-head">
+                <div>
+                  <h2>{ECOUNT_CHAPTER_TITLE[chapter]}</h2>
+                  <p>{ecountPage.sub}</p>
+                </div>
+                <div className="page-meta mono">
+                  {String(Math.min(pageIdx, ECOUNT_PAGES.length - 1) + 1).padStart(
+                    2,
+                    "0",
+                  )}{" "}
+                  / {String(ECOUNT_PAGES.length).padStart(2, "0")}
+                </div>
+              </header>
+              <EcountChapter
+                pageIndex={Math.min(pageIdx, ECOUNT_PAGES.length - 1)}
+              />
+              <nav className="pager" aria-label="페이지 이동">
+                <button
+                  type="button"
+                  disabled={pageIdx <= 0}
+                  onClick={() => goEcountPage(pageIdx - 1)}
+                >
+                  <ArrowLeftIcon />
+                  이전
+                </button>
+                <button type="button" onClick={goHub}>
+                  홈
+                </button>
+                <button
+                  type="button"
+                  disabled={pageIdx >= ECOUNT_PAGES.length - 1}
+                  onClick={() => goEcountPage(pageIdx + 1)}
+                >
+                  다음
+                  <ArrowRightIcon />
+                </button>
+              </nav>
+            </div>
+          </article>
+        </main>
+      </div>
+    );
+  }
+
+  const chapter = warehousePage.chapter;
+  const safeIdx = Math.min(pageIdx, WAREHOUSE_PAGES.length - 1);
 
   return (
     <div className="app-shell">
-      <Sidebar chapter={chapter} onSelect={goChapter} open={navOpen} />
+      <Sidebar
+        chapter={chapter}
+        onSelect={goWarehouseChapter}
+        onHome={goHub}
+        open={navOpen}
+      />
 
       <main className="main">
         <div className="mobile-bar">
@@ -84,7 +238,7 @@ export default function App() {
             {navOpen ? <XMarkIcon /> : <Bars3Icon />}
             목차
           </button>
-          <strong>WAC 창고 메뉴얼</strong>
+          <strong>창고 메뉴얼</strong>
         </div>
 
         {navOpen ? (
@@ -101,29 +255,32 @@ export default function App() {
             <header className="page-head">
               <div>
                 <h2>{CHAPTER_TITLE[chapter]}</h2>
-                <p>{page.sub}</p>
+                <p>{warehousePage.sub}</p>
               </div>
               <div className="page-meta mono">
-                {String(pageIdx + 1).padStart(2, "0")} /{" "}
-                {String(PAGES.length).padStart(2, "0")}
+                {String(safeIdx + 1).padStart(2, "0")} /{" "}
+                {String(WAREHOUSE_PAGES.length).padStart(2, "0")}
               </div>
             </header>
 
-            {body}
+            {warehouseBody}
 
             <nav className="pager" aria-label="페이지 이동">
               <button
                 type="button"
-                disabled={pageIdx <= 0}
-                onClick={() => goPage(pageIdx - 1)}
+                disabled={safeIdx <= 0}
+                onClick={() => goWarehousePage(safeIdx - 1)}
               >
                 <ArrowLeftIcon />
                 이전
               </button>
+              <button type="button" onClick={goHub}>
+                홈
+              </button>
               <button
                 type="button"
-                disabled={pageIdx >= PAGES.length - 1}
-                onClick={() => goPage(pageIdx + 1)}
+                disabled={safeIdx >= WAREHOUSE_PAGES.length - 1}
+                onClick={() => goWarehousePage(safeIdx + 1)}
               >
                 다음
                 <ArrowRightIcon />

@@ -50,7 +50,7 @@ export function Sidebar({ chapter, onSelect, onHome, open }: Props) {
 
       <button type="button" className="toc-home" onClick={onHome}>
         <HomeIcon />
-        인턴 WMART 홈
+        인턴 W MART 홈
       </button>
 
       <nav className="toc" aria-label="목차">

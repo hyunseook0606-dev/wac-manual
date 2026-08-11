@@ -77,7 +77,7 @@ export const ECOUNT_PAGES: {
         example: [
           {
             label: "특이사항(배송)",
-            text: "기사님·다른 사람도 볼 수 있음 · 예: 풀필먼트 2박스",
+            text: "기사님·다른 사람도 볼 수 있음 · 예: 오후 두시전까지 배송요청",
           },
           {
             label: "특이사항(창고)",

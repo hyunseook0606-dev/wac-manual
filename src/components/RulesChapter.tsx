@@ -523,5 +523,13 @@ type Props = {
 export function RulesChapter({ pageIndex }: Props) {
   const page = RULE_PAGES[pageIndex] ?? RULE_PAGES[0];
 
-  return <div className="ecount-page warehouse-page">{page.body}</div>;
+  return (
+    <div className="ecount-page warehouse-page">
+      <div className="ecount-step-head">
+        <span className="ecount-step-no">{page.no}</span>
+        <h3>{page.title}</h3>
+      </div>
+      {page.body}
+    </div>
+  );
 }

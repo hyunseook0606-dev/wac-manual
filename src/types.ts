@@ -29,8 +29,18 @@ export type LocationData = {
 /** Top-level manuals (separate from each other) */
 export type ManualId = "hub" | "warehouse" | "ecount";
 
-/** @deprecated Warehouse now uses flat page nav like ECOUNT */
+/** Warehouse sidebar chapters */
 export type WarehouseChapterId = "rules" | "map";
 
 /** ECOUNT sidebar chapters */
 export type EcountChapterId = "sales-entry";
+
+export type WarehousePage =
+  | {
+      id: string;
+      chapter: "rules";
+      rulePage: number;
+      title: string;
+      sub: string;
+    }
+  | { id: "map"; chapter: "map"; title: string; sub: string };

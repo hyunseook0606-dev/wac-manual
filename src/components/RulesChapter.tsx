@@ -28,98 +28,122 @@ export const RULE_PAGES: RulePage[] = [
           </p>
         </div>
 
-        <h4 className="example-heading">K · N · H가 뭔가요?</h4>
-        <p className="example-lead">
-          거래처코드 맨 앞 글자는 <strong>배송 지역</strong>입니다.
-        </p>
-        <div className="knh-meaning">
-          <div className="knh-card">
-            <strong>K</strong>
-            <span>Kowloon · 구룡</span>
-          </div>
-          <div className="knh-card">
-            <strong>N</strong>
-            <span>New Territories · 신계</span>
-          </div>
-          <div className="knh-card">
-            <strong>H</strong>
-            <span>Hong Kong Island · 홍콩섬</span>
-          </div>
-        </div>
-
-        <div className="howto-grid">
-          <div className="howto-card">
-            <span className="howto-step">보는 법 1</span>
-            <strong>거래처코드 맨 앞</strong>
-            <p>
-              <em>K</em> / <em>N</em> / <em>H</em> 중 하나
-            </p>
-          </div>
-          <div className="howto-card">
-            <span className="howto-step">보는 법 2</span>
-            <strong>K이면 거래처명 확인</strong>
-            <p>
-              <em>침사추이</em>가 있으면 따로 빼기
-            </p>
-          </div>
-        </div>
-
-        <h4 className="example-heading">예시 ① — K + 침사추이 (가장 먼저 피킹)</h4>
-        <p className="example-lead">
-          코드가 K이고 거래처명에 침사추이가 있으면 →{" "}
-          <strong>맨 먼저 분류</strong>
-        </p>
-        <div className="label-frame example-hero">
-          <img
-            src="/labels/example-K-chimsa.png"
-            alt="K 침사추이 패킹리스트 예시"
-          />
-          <p className="label-cap">실제 예시 · ①K + ①침사추이</p>
-        </div>
-
-        <h4 className="example-heading">예시 ② — N</h4>
-        <p className="example-lead">
-          맨 앞이 N이면 → <strong>N으로 분류</strong> (H는 H로 분류)
-        </p>
-        <div className="label-frame example-side">
-          <img src="/labels/example-N.png" alt="N 패킹리스트 예시" />
-          <p className="label-cap">N 예시 · 거래처코드 맨 앞 글자만 보면 됨</p>
-        </div>
-
-        <h4 className="example-heading">피킹 시작 순서</h4>
-        <ol className="pick-order pick-order-row">
-          <li>
-            <span className="pick-badge">1</span>
-            <div>
-              <strong>K · 침사추이</strong>
-              <em>위 예시 ①</em>
+        <section className="wh-section">
+          <h3 className="wh-section-title">K · N · H가 뭔가요?</h3>
+          <ul className="ecount-step-list">
+            <li>
+              거래처코드 맨 앞 글자는 <strong>배송 지역</strong>입니다.
+            </li>
+          </ul>
+          <div className="knh-meaning">
+            <div className="knh-card">
+              <strong>K</strong>
+              <span>Kowloon · 구룡</span>
             </div>
-          </li>
-          <li>
-            <span className="pick-badge">2</span>
-            <div>
-              <strong>K (나머지)</strong>
-              <em>K인데 침사추이 아님</em>
-            </div>
-          </li>
-          <li>
-            <span className="pick-badge">3</span>
-            <div>
+            <div className="knh-card">
               <strong>N</strong>
-              <em>위 예시 ②</em>
+              <span>New Territories · 신계</span>
             </div>
-          </li>
-          <li>
-            <span className="pick-badge">4</span>
-            <div>
+            <div className="knh-card">
               <strong>H</strong>
-              <em>끝나면 패킹</em>
+              <span>Hong Kong Island · 홍콩섬</span>
             </div>
-          </li>
-        </ol>
-        <p className="rule-note rule-note-strong">
-          한 줄: <strong>K 침사추이 → K → N → H → 패킹</strong>
-        </p>
+          </div>
+        </section>
+
+        <section className="wh-section">
+          <h3 className="wh-section-title">보는 법</h3>
+          <div className="howto-grid">
+            <div className="howto-card">
+              <span className="howto-step">보는 법 1</span>
+              <strong>거래처코드 맨 앞</strong>
+              <p>
+                <em>K</em> / <em>N</em> / <em>H</em> 중 하나
+              </p>
+            </div>
+            <div className="howto-card">
+              <span className="howto-step">보는 법 2</span>
+              <strong>K이면 거래처명 확인</strong>
+              <p>
+                <em>침사추이</em>가 있으면 따로 빼기
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="wh-section">
+          <h3 className="wh-section-title">예시 ① — K + 침사추이</h3>
+          <ul className="ecount-step-list">
+            <li>
+              코드가 K이고 거래처명에 침사추이가 있으면 →{" "}
+              <strong>맨 먼저 분류</strong>
+            </li>
+          </ul>
+          <div className="label-frame example-hero">
+            <img
+              src="/labels/example-K-chimsa.png"
+              alt="K 침사추이 패킹리스트 예시"
+            />
+            <p className="label-cap">실제 예시 · ①K + ①침사추이</p>
+          </div>
+        </section>
+
+        <section className="wh-section">
+          <h3 className="wh-section-title">예시 ② — N</h3>
+          <ul className="ecount-step-list">
+            <li>
+              맨 앞이 N이면 → <strong>N으로 분류</strong> (H는 H로 분류)
+            </li>
+          </ul>
+          <div className="label-frame example-side">
+            <img src="/labels/example-N.png" alt="N 패킹리스트 예시" />
+            <p className="label-cap">N 예시 · 거래처코드 맨 앞 글자만 보면 됨</p>
+          </div>
+        </section>
+
+        <section className="wh-section">
+          <h3 className="wh-section-title">피킹 시작 순서</h3>
+          <ol className="pick-order pick-order-row">
+            <li>
+              <span className="pick-badge">1</span>
+              <div>
+                <strong>K · 침사추이</strong>
+                <em>위 예시 ①</em>
+              </div>
+            </li>
+            <li>
+              <span className="pick-badge">2</span>
+              <div>
+                <strong>K (나머지)</strong>
+                <em>K인데 침사추이 아님</em>
+              </div>
+            </li>
+            <li>
+              <span className="pick-badge">3</span>
+              <div>
+                <strong>N</strong>
+                <em>위 예시 ②</em>
+              </div>
+            </li>
+            <li>
+              <span className="pick-badge">4</span>
+              <div>
+                <strong>H</strong>
+                <em>끝나면 패킹</em>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <div className="callout callout-key">
+          <span className="callout-icon">✓</span>
+          <div className="callout-body">
+            <span className="callout-label">여기까지 핵심</span>
+            <p>
+              <strong>K 침사추이 → K → N → H → 패킹</strong>
+            </p>
+          </div>
+        </div>
       </>
     ),
   },
@@ -130,7 +154,12 @@ export const RULE_PAGES: RulePage[] = [
     wide: true,
     body: (
       <>
-        <p>분류한 리스트를 들고 창고로 가서, 빨간 번호 순서대로 하면 됩니다.</p>
+        <div className="rule-callout">
+          <p>
+            분류한 리스트를 들고 창고로 가서, 빨간 번호 순서대로 하면 됩니다.
+          </p>
+        </div>
+
         <div className="plist-layout">
           <div className="label-frame plist-frame">
             <img
@@ -176,6 +205,27 @@ export const RULE_PAGES: RulePage[] = [
             </li>
           </ol>
         </div>
+
+        <div className="callout callout-tip">
+          <span className="callout-icon">TIP</span>
+          <div className="callout-body">
+            <span className="callout-label">Tip</span>
+            <p>
+              이니셜은 영어 이름 약자로 적습니다. 예: 옥현서 → <strong>OK</strong>
+            </p>
+          </div>
+        </div>
+
+        <div className="callout callout-key">
+          <span className="callout-icon">✓</span>
+          <div className="callout-body">
+            <span className="callout-label">여기까지 핵심</span>
+            <ul>
+              <li>이니셜 → 위치 → 수량 피킹</li>
+              <li>패킹하는 곳에서 박스수량 · 거래처코드 라벨</li>
+            </ul>
+          </div>
+        </div>
       </>
     ),
   },
@@ -185,10 +235,13 @@ export const RULE_PAGES: RulePage[] = [
     sub: "앞부터 쌓기 / 뒤부터 내리기",
     body: (
       <>
-        <p>
-          손잡이 기준으로 <strong>앞/뒤가 반대</strong>입니다.
-        </p>
-        <ul>
+        <div className="rule-callout">
+          <p>
+            손잡이 기준으로 <strong>앞/뒤가 반대</strong>입니다.
+          </p>
+        </div>
+
+        <ul className="ecount-step-list">
           <li>
             <strong>피킹(쌓기)</strong> — 손잡이에서 먼 <strong>앞쪽</strong>
             부터
@@ -198,12 +251,23 @@ export const RULE_PAGES: RulePage[] = [
             부터
           </li>
         </ul>
+
         <div className="label-frame cart-frame">
           <img
             src="/labels/cart-annotated.png"
             alt="파란 손수레 - 앞부터 쌓기, 뒤부터 내리기"
           />
           <p className="label-cap">①뒤(손잡이) / ②앞</p>
+        </div>
+
+        <div className="callout callout-warn">
+          <span className="callout-icon">!</span>
+          <div className="callout-body">
+            <span className="callout-label">주의</span>
+            <p>
+              쌓을 때와 내릴 때 방향이 다릅니다. 앞부터 쌓고, 뒤부터 내리세요.
+            </p>
+          </div>
         </div>
       </>
     ),
@@ -225,68 +289,76 @@ export const RULE_PAGES: RulePage[] = [
           </p>
         </div>
 
-        <h4 className="example-heading">더블체크 확인 (패킹 전에 꼭)</h4>
-        <p className="example-lead">
-          <strong>Picked by</strong> 옆 <strong>Checked by</strong>에 이니셜이
-          있으면 → 더블체크된 리스트 → 패킹 가능
-        </p>
-        <div className="label-frame example-side">
-          <img
-            src="/labels/packing-list-doublecheck.png"
-            alt="Checked by에 영어 이니셜이 있으면 더블체크 완료"
-          />
-          <p className="label-cap">
-            예시 · Checked by에 HS처럼 이니셜이 있으면 패킹
-          </p>
-        </div>
+        <section className="wh-section">
+          <h3 className="wh-section-title">더블체크 확인 (패킹 전에 꼭)</h3>
+          <ul className="ecount-step-list">
+            <li>
+              <strong>Picked by</strong> 옆 <strong>Checked by</strong>에
+              이니셜이 있으면 → 더블체크된 리스트 → 패킹 가능
+            </li>
+          </ul>
+          <div className="label-frame example-side">
+            <img
+              src="/labels/packing-list-doublecheck.png"
+              alt="Checked by에 영어 이니셜이 있으면 더블체크 완료"
+            />
+            <p className="label-cap">
+              예시 · Checked by에 HS처럼 이니셜이 있으면 패킹
+            </p>
+          </div>
+        </section>
 
-        <h4 className="example-heading">박스에 넣는 규칙</h4>
-        <div className="pack-rules">
-          <article className="pack-rule">
-            <span className="pack-rule-no">1</span>
-            <div>
-              <span className="pack-rule-title">온도대별 분리 포장</span>
-              <p>
-                <em>상온</em>과 <em>냉장·냉동</em>은 원칙적으로{" "}
-                <strong>다른 박스</strong>에 넣습니다.
-              </p>
-            </div>
-          </article>
+        <section className="wh-section">
+          <h3 className="wh-section-title">박스에 넣는 규칙</h3>
+          <div className="pack-rules">
+            <article className="pack-rule">
+              <span className="pack-rule-no">1</span>
+              <div>
+                <span className="pack-rule-title">온도대별 분리 포장</span>
+                <p>
+                  <em>상온</em>과 <em>냉장·냉동</em>은 원칙적으로{" "}
+                  <strong>다른 박스</strong>에 넣습니다.
+                </p>
+              </div>
+            </article>
 
-          <article className="pack-rule">
-            <span className="pack-rule-no">2</span>
-            <div>
-              <span className="pack-rule-title">합포장(혼재)할 때</span>
-              <p>
-                어쩔 수 없이 한 박스에 섞어야 하면{" "}
-                <strong>종이 칸막이(파티션)</strong>을 넣어 제품이 서로 닿지
-                않게 합니다.
-              </p>
-            </div>
-          </article>
+            <article className="pack-rule">
+              <span className="pack-rule-no">2</span>
+              <div>
+                <span className="pack-rule-title">합포장(혼재)할 때</span>
+                <p>
+                  어쩔 수 없이 한 박스에 섞어야 하면{" "}
+                  <strong>종이 칸막이(파티션)</strong>을 넣어 제품이 서로 닿지
+                  않게 합니다.
+                </p>
+              </div>
+            </article>
 
-          <article className="pack-rule">
-            <span className="pack-rule-no">3</span>
-            <div>
-              <span className="pack-rule-title">분말류 방습</span>
-              <p>
-                분말형 제품은 습기·결로를 막기 위해{" "}
-                <strong>가급적 단독으로 밀봉</strong> 포장합니다.
-              </p>
-            </div>
-          </article>
+            <article className="pack-rule">
+              <span className="pack-rule-no">3</span>
+              <div>
+                <span className="pack-rule-title">분말류 방습</span>
+                <p>
+                  분말형 제품은 습기·결로를 막기 위해{" "}
+                  <strong>가급적 단독으로 밀봉</strong> 포장합니다.
+                </p>
+              </div>
+            </article>
 
-          <article className="pack-rule pack-rule-warn">
-            <span className="pack-rule-no">4</span>
-            <div>
-              <span className="pack-rule-title">깻잎 · 청양고추 — 혼합 금지</span>
-              <p>
-                <em>깻잎</em>, <em>청양고추</em>는 냉장·냉동 제품과{" "}
-                <strong>같은 박스에 넣지 않습니다.</strong>
-              </p>
-            </div>
-          </article>
-        </div>
+            <article className="pack-rule pack-rule-warn">
+              <span className="pack-rule-no">4</span>
+              <div>
+                <span className="pack-rule-title">
+                  깻잎 · 청양고추 — 혼합 금지
+                </span>
+                <p>
+                  <em>깻잎</em>, <em>청양고추</em>는 냉장·냉동 제품과{" "}
+                  <strong>같은 박스에 넣지 않습니다.</strong>
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <div className="callout callout-warn">
           <span className="callout-icon">!</span>
@@ -301,7 +373,7 @@ export const RULE_PAGES: RulePage[] = [
         <div className="callout callout-key">
           <span className="callout-icon">✓</span>
           <div className="callout-body">
-            <span className="callout-label">기억</span>
+            <span className="callout-label">여기까지 핵심</span>
             <ul>
               <li>더블체크 확인</li>
               <li>온도 분리 → (섞으면) 칸막이</li>
@@ -386,7 +458,7 @@ export const RULE_PAGES: RulePage[] = [
         <div className="callout callout-key">
           <span className="callout-icon">✓</span>
           <div className="callout-body">
-            <span className="callout-label">한 줄 요약</span>
+            <span className="callout-label">여기까지 핵심</span>
             <p>
               <strong>무거우면 두면 · 가벼우면 한면</strong> (모서리 단면 확인)
             </p>
@@ -402,6 +474,10 @@ export const RULE_PAGES: RulePage[] = [
     wide: true,
     body: (
       <>
+        <div className="rule-callout">
+          <p>박스에 담은 뒤, 필요한 라벨을 붙입니다.</p>
+        </div>
+
         <div className="label-duo">
           <div className="label-duo-card">
             <h4>주의 (FRAGILE)</h4>
@@ -424,6 +500,17 @@ export const RULE_PAGES: RulePage[] = [
             </div>
           </div>
         </div>
+
+        <div className="callout callout-key">
+          <span className="callout-icon">✓</span>
+          <div className="callout-body">
+            <span className="callout-label">여기까지 핵심</span>
+            <ul>
+              <li>깨지기 쉬운 것 → 비닐 + 주의 라벨</li>
+              <li>10kg 초과 → HEAVY 라벨</li>
+            </ul>
+          </div>
+        </div>
       </>
     ),
   },
@@ -436,18 +523,5 @@ type Props = {
 export function RulesChapter({ pageIndex }: Props) {
   const page = RULE_PAGES[pageIndex] ?? RULE_PAGES[0];
 
-  return (
-    <div className="rules-list">
-      <div className="rule-page-meta mono">
-        수칙 {pageIndex + 1} / {RULE_PAGES.length}
-      </div>
-      <article className={`rule ${page.wide ? "rule-wide" : ""}`}>
-        <div className="rule-no">{page.no}</div>
-        <div>
-          <h3>{page.title}</h3>
-          {page.body}
-        </div>
-      </article>
-    </div>
-  );
+  return <div className="ecount-page warehouse-page">{page.body}</div>;
 }

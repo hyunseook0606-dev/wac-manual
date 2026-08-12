@@ -1,45 +1,42 @@
 import {
-  BookOpenIcon,
   ClipboardDocumentCheckIcon,
   HomeIcon,
   MapIcon,
 } from "@heroicons/react/24/outline";
-import type { WarehouseChapterId } from "../types";
+import { RULE_PAGES } from "./RulesChapter";
 
-const TOC: {
-  id: WarehouseChapterId;
+export type WarehouseNavPage = {
+  id: string;
   title: string;
-  desc: string;
-  icon: typeof BookOpenIcon;
-}[] = [
-  {
-    id: "cover",
-    title: "시작하기",
-    desc: "메뉴얼 소개",
-    icon: BookOpenIcon,
-  },
-  {
-    id: "rules",
-    title: "창고 작업 수칙",
-    desc: "분류 · 피킹 · 패킹 · 라벨",
-    icon: ClipboardDocumentCheckIcon,
-  },
+  sub: string;
+  kind: "rules" | "map";
+  rulePage?: number;
+};
+
+export const WAREHOUSE_NAV: WarehouseNavPage[] = [
+  ...RULE_PAGES.map((rule, i) => ({
+    id: `rules-${i}`,
+    title: rule.title,
+    sub: rule.sub,
+    kind: "rules" as const,
+    rulePage: i,
+  })),
   {
     id: "map",
     title: "창고 도면",
-    desc: "전체 도면 · 렉 사진",
-    icon: MapIcon,
+    sub: "본사창고 · 아래 패킹하는 곳 · 왼 A / 오 B",
+    kind: "map" as const,
   },
 ];
 
 type Props = {
-  chapter: WarehouseChapterId;
-  onSelect: (id: WarehouseChapterId) => void;
+  pageIndex: number;
+  onSelectPage: (idx: number) => void;
   onHome: () => void;
   open: boolean;
 };
 
-export function Sidebar({ chapter, onSelect, onHome, open }: Props) {
+export function Sidebar({ pageIndex, onSelectPage, onHome, open }: Props) {
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
       <div className="brand">
@@ -55,21 +52,22 @@ export function Sidebar({ chapter, onSelect, onHome, open }: Props) {
 
       <nav className="toc" aria-label="목차">
         <p className="toc-label">Contents</p>
-        {TOC.map((item, idx) => {
-          const Icon = item.icon;
+        {WAREHOUSE_NAV.map((item, idx) => {
+          const Icon =
+            item.kind === "map" ? MapIcon : ClipboardDocumentCheckIcon;
           return (
             <button
               key={item.id}
               type="button"
-              className={`toc-btn ${chapter === item.id ? "active" : ""}`}
-              onClick={() => onSelect(item.id)}
+              className={`toc-btn ${pageIndex === idx ? "active" : ""}`}
+              onClick={() => onSelectPage(idx)}
             >
               <Icon />
               <span>
                 <strong>
                   {String(idx + 1).padStart(2, "0")}. {item.title}
                 </strong>
-                <em>{item.desc}</em>
+                <em>{item.sub}</em>
               </span>
             </button>
           );
@@ -84,9 +82,3 @@ export function Sidebar({ chapter, onSelect, onHome, open }: Props) {
     </aside>
   );
 }
-
-export const CHAPTER_TITLE: Record<WarehouseChapterId, string> = {
-  cover: "시작하기",
-  rules: "창고 작업 수칙",
-  map: "창고 도면",
-};

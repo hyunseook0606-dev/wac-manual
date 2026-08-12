@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import type { ChapterId, Item, LocationData } from "../types";
+import type { Item, LocationData } from "../types";
 
 type Props = {
   data: LocationData;
@@ -79,4 +79,3 @@ export function SearchChapter({ data, onGoMap }: Props) {
 }
 
 export type GoMapHandler = (rack: string) => void;
-export type SetChapter = (id: ChapterId) => void;

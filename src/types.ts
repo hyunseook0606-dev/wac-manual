@@ -29,33 +29,8 @@ export type LocationData = {
 /** Top-level manuals (separate from each other) */
 export type ManualId = "hub" | "warehouse" | "ecount";
 
-/** Warehouse sidebar chapters */
-export type WarehouseChapterId = "cover" | "rules" | "map";
+/** @deprecated Warehouse now uses flat page nav like ECOUNT */
+export type WarehouseChapterId = "rules" | "map";
 
 /** ECOUNT sidebar chapters */
 export type EcountChapterId = "sales-entry";
-
-export type WarehousePage =
-  | { id: "cover"; chapter: "cover"; title: string; sub: string }
-  | {
-      id: string;
-      chapter: "rules";
-      rulePage: number;
-      title: string;
-      sub: string;
-    }
-  | { id: "map"; chapter: "map"; title: string; sub: string };
-
-export type EcountPage = {
-  id: string;
-  chapter: EcountChapterId;
-  pageIndex: number;
-  title: string;
-  sub: string;
-};
-
-/** @deprecated use WarehouseChapterId */
-export type ChapterId = WarehouseChapterId;
-
-/** @deprecated use WarehousePage */
-export type ManualPage = WarehousePage;

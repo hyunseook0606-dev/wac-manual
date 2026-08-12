@@ -10,12 +10,19 @@ type Props = {
 
 export function MapChapter({ data: _data }: Props) {
   return (
-    <div className="map-chapter">
-      <section className="map-visual">
-        <h3 className="map-visual-title">전체 도면</h3>
-        <p className="map-visual-lead">
-          아래가 패킹하는 곳 · 왼쪽 A · 오른쪽 B · 가운데 통로
+    <div className="ecount-page warehouse-page">
+      <div className="rule-callout">
+        <p>
+          이 도면·수칙의 「창고」는 ECOUNT의 <strong>본사창고</strong>입니다.
         </p>
+        <p className="rule-callout-next">
+          아래가 패킹하는 곳 · 왼쪽 <strong>A</strong> · 오른쪽{" "}
+          <strong>B</strong> · 가운데 통로
+        </p>
+      </div>
+
+      <section className="wh-section map-visual">
+        <h3 className="wh-section-title">전체 도면</h3>
         <div className="map-photo-frame">
           <img
             src="/labels/warehouse-map.png"
@@ -24,12 +31,14 @@ export function MapChapter({ data: _data }: Props) {
         </div>
       </section>
 
-      <section className="map-visual">
-        <h3 className="map-visual-title">렉 단(높이)</h3>
-        <p className="map-visual-lead">
-          위→아래 · <strong>1/3</strong>(상단) → <strong>1/2</strong>(중단) →{" "}
-          <strong>1/1</strong>(하단·팔레트)
-        </p>
+      <section className="wh-section map-visual">
+        <h3 className="wh-section-title">렉 단(높이)</h3>
+        <ul className="ecount-step-list">
+          <li>
+            위→아래 · <strong>1/3</strong>(상단) → <strong>1/2</strong>(중단) →{" "}
+            <strong>1/1</strong>(하단·팔레트)
+          </li>
+        </ul>
         <div className="map-photo-frame map-photo-rack">
           <img
             src="/labels/rack-levels-annotated.png"
@@ -48,6 +57,16 @@ export function MapChapter({ data: _data }: Props) {
           </li>
         </ul>
       </section>
+
+      <div className="callout callout-tip">
+        <span className="callout-icon">TIP</span>
+        <div className="callout-body">
+          <span className="callout-label">Tip</span>
+          <p>
+            패킹리스트의 위치(예: A 5/6)는 도면의 구역·렉·단을 따라가면 됩니다.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

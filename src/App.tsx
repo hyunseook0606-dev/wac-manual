@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -6,44 +6,16 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import locationData from "./data/locations.json";
-import type {
-  LocationData,
-  ManualId,
-  WarehouseChapterId,
-  WarehousePage,
-} from "./types";
-import { CHAPTER_TITLE, Sidebar } from "./components/Sidebar";
+import type { LocationData, ManualId } from "./types";
+import { Sidebar, WAREHOUSE_NAV } from "./components/Sidebar";
 import { EcountSidebar } from "./components/EcountSidebar";
-import { CoverChapter } from "./components/CoverChapter";
-import { RulesChapter, RULE_PAGES } from "./components/RulesChapter";
+import { RulesChapter } from "./components/RulesChapter";
 import { MapChapter } from "./components/MapChapter";
 import { HubPage } from "./components/HubPage";
 import { EcountChapter, ECOUNT_PAGES } from "./components/EcountChapter";
 import "./chapters.css";
 
 const DATA = locationData as LocationData;
-
-const WAREHOUSE_PAGES: WarehousePage[] = [
-  {
-    id: "cover",
-    chapter: "cover",
-    title: "시작하기",
-    sub: "피킹 · 패킹 가이드",
-  },
-  ...RULE_PAGES.map((rule, i) => ({
-    id: `rules-${i}`,
-    chapter: "rules" as const,
-    rulePage: i,
-    title: "창고 작업 수칙",
-    sub: `${rule.no}. ${rule.title}`,
-  })),
-  {
-    id: "map",
-    chapter: "map",
-    title: "창고 도면",
-    sub: "본사창고 · 아래 패킹하는 곳 · 왼 A / 오 B",
-  },
-];
 
 function parseHash(): { manual: ManualId; page: number } {
   const raw = window.location.hash.replace(/^#\/?/, "");
@@ -73,10 +45,6 @@ function setHash(manual: ManualId, page = 0) {
   window.location.hash = `#/${manual}/${page}`;
 }
 
-function firstWarehousePage(chapter: WarehouseChapterId): number {
-  return WAREHOUSE_PAGES.findIndex((p) => p.chapter === chapter);
-}
-
 export default function App() {
   const initial = parseHash();
   const [manual, setManual] = useState<ManualId>(initial.manual);
@@ -95,35 +63,18 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  const warehousePage = WAREHOUSE_PAGES[pageIdx] ?? WAREHOUSE_PAGES[0];
-
-  const warehouseBody = useMemo(() => {
-    switch (warehousePage.chapter) {
-      case "cover":
-        return <CoverChapter />;
-      case "rules":
-        return <RulesChapter pageIndex={warehousePage.rulePage} />;
-      case "map":
-        return <MapChapter data={DATA} initialRack={null} />;
-    }
-  }, [warehousePage]);
-
   const goHub = () => setHash("hub");
   const openWarehouse = () => setHash("warehouse", 0);
   const openEcount = () => setHash("ecount", 0);
 
   const goWarehousePage = (idx: number) => {
-    const clamped = Math.max(0, Math.min(WAREHOUSE_PAGES.length - 1, idx));
+    const clamped = Math.max(0, Math.min(WAREHOUSE_NAV.length - 1, idx));
     setHash("warehouse", clamped);
   };
 
   const goEcountPage = (idx: number) => {
     const clamped = Math.max(0, Math.min(ECOUNT_PAGES.length - 1, idx));
     setHash("ecount", clamped);
-  };
-
-  const goWarehouseChapter = (id: WarehouseChapterId) => {
-    goWarehousePage(firstWarehousePage(id));
   };
 
   if (manual === "hub") {
@@ -206,14 +157,14 @@ export default function App() {
     );
   }
 
-  const chapter = warehousePage.chapter;
-  const safeIdx = Math.min(pageIdx, WAREHOUSE_PAGES.length - 1);
+  const safeIdx = Math.min(pageIdx, WAREHOUSE_NAV.length - 1);
+  const current = WAREHOUSE_NAV[safeIdx] ?? WAREHOUSE_NAV[0];
 
   return (
     <div className="app-shell">
       <Sidebar
-        chapter={chapter}
-        onSelect={goWarehouseChapter}
+        pageIndex={safeIdx}
+        onSelectPage={goWarehousePage}
         onHome={goHub}
         open={navOpen}
       />
@@ -244,16 +195,20 @@ export default function App() {
           <div className="page-inner">
             <header className="page-head">
               <div>
-                <h2>{CHAPTER_TITLE[chapter]}</h2>
-                <p>{warehousePage.sub}</p>
+                <h2>{current.title}</h2>
+                <p>{current.sub}</p>
               </div>
               <div className="page-meta mono">
                 {String(safeIdx + 1).padStart(2, "0")} /{" "}
-                {String(WAREHOUSE_PAGES.length).padStart(2, "0")}
+                {String(WAREHOUSE_NAV.length).padStart(2, "0")}
               </div>
             </header>
 
-            {warehouseBody}
+            {current.kind === "map" ? (
+              <MapChapter data={DATA} />
+            ) : (
+              <RulesChapter pageIndex={current.rulePage ?? 0} />
+            )}
 
             <nav className="pager" aria-label="페이지 이동">
               <button
@@ -269,7 +224,7 @@ export default function App() {
               </button>
               <button
                 type="button"
-                disabled={safeIdx >= WAREHOUSE_PAGES.length - 1}
+                disabled={safeIdx >= WAREHOUSE_NAV.length - 1}
                 onClick={() => goWarehousePage(safeIdx + 1)}
               >
                 다음

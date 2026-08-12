@@ -1,9 +1,7 @@
 import { ComputerDesktopIcon, HomeIcon } from "@heroicons/react/24/outline";
-import type { EcountChapterId } from "../types";
 import { ECOUNT_PAGES } from "./EcountChapter";
 
 type Props = {
-  chapter: EcountChapterId;
   pageIndex: number;
   onSelectPage: (idx: number) => void;
   onHome: () => void;
@@ -11,7 +9,6 @@ type Props = {
 };
 
 export function EcountSidebar({
-  chapter,
   pageIndex,
   onSelectPage,
   onHome,
@@ -22,7 +19,7 @@ export function EcountSidebar({
       <div className="brand">
         <p className="brand-kicker">ECOUNT Manual</p>
         <h1>ECOUNT 메뉴얼</h1>
-        <p>판매입력 · 인보이스 · 출력</p>
+        <p>판매입력 · 인보이스 · 패킹리스트</p>
       </div>
 
       <button type="button" className="toc-home" onClick={onHome}>
@@ -36,7 +33,7 @@ export function EcountSidebar({
           <button
             key={page.id}
             type="button"
-            className={`toc-btn ${chapter === "sales-entry" && pageIndex === idx ? "active" : ""}`}
+            className={`toc-btn ${pageIndex === idx ? "active" : ""}`}
             onClick={() => onSelectPage(idx)}
           >
             <ComputerDesktopIcon />
@@ -58,7 +55,3 @@ export function EcountSidebar({
     </aside>
   );
 }
-
-export const ECOUNT_CHAPTER_TITLE: Record<EcountChapterId, string> = {
-  "sales-entry": "판매입력",
-};

@@ -7,17 +7,13 @@ import {
 } from "@heroicons/react/24/outline";
 import locationData from "./data/locations.json";
 import type {
-  EcountChapterId,
   LocationData,
   ManualId,
   WarehouseChapterId,
   WarehousePage,
 } from "./types";
 import { CHAPTER_TITLE, Sidebar } from "./components/Sidebar";
-import {
-  ECOUNT_CHAPTER_TITLE,
-  EcountSidebar,
-} from "./components/EcountSidebar";
+import { EcountSidebar } from "./components/EcountSidebar";
 import { CoverChapter } from "./components/CoverChapter";
 import { RulesChapter, RULE_PAGES } from "./components/RulesChapter";
 import { MapChapter } from "./components/MapChapter";
@@ -100,7 +96,6 @@ export default function App() {
   }, []);
 
   const warehousePage = WAREHOUSE_PAGES[pageIdx] ?? WAREHOUSE_PAGES[0];
-  const ecountPage = ECOUNT_PAGES[pageIdx] ?? ECOUNT_PAGES[0];
 
   const warehouseBody = useMemo(() => {
     switch (warehousePage.chapter) {
@@ -140,12 +135,12 @@ export default function App() {
   }
 
   if (manual === "ecount") {
-    const chapter: EcountChapterId = "sales-entry";
+    const safeEcountIdx = Math.min(pageIdx, ECOUNT_PAGES.length - 1);
+    const currentEcount = ECOUNT_PAGES[safeEcountIdx] ?? ECOUNT_PAGES[0];
     return (
       <div className="app-shell">
         <EcountSidebar
-          chapter={chapter}
-          pageIndex={Math.min(pageIdx, ECOUNT_PAGES.length - 1)}
+          pageIndex={safeEcountIdx}
           onSelectPage={goEcountPage}
           onHome={goHub}
           open={navOpen}
@@ -174,25 +169,20 @@ export default function App() {
             <div className="page-inner">
               <header className="page-head">
                 <div>
-                  <h2>{ECOUNT_CHAPTER_TITLE[chapter]}</h2>
-                  <p>{ecountPage.sub}</p>
+                  <h2>{currentEcount.title}</h2>
+                  <p>{currentEcount.sub}</p>
                 </div>
                 <div className="page-meta mono">
-                  {String(Math.min(pageIdx, ECOUNT_PAGES.length - 1) + 1).padStart(
-                    2,
-                    "0",
-                  )}{" "}
-                  / {String(ECOUNT_PAGES.length).padStart(2, "0")}
+                  {String(safeEcountIdx + 1).padStart(2, "0")} /{" "}
+                  {String(ECOUNT_PAGES.length).padStart(2, "0")}
                 </div>
               </header>
-              <EcountChapter
-                pageIndex={Math.min(pageIdx, ECOUNT_PAGES.length - 1)}
-              />
+              <EcountChapter pageIndex={safeEcountIdx} />
               <nav className="pager" aria-label="페이지 이동">
                 <button
                   type="button"
-                  disabled={pageIdx <= 0}
-                  onClick={() => goEcountPage(pageIdx - 1)}
+                  disabled={safeEcountIdx <= 0}
+                  onClick={() => goEcountPage(safeEcountIdx - 1)}
                 >
                   <ArrowLeftIcon />
                   이전
@@ -202,8 +192,8 @@ export default function App() {
                 </button>
                 <button
                   type="button"
-                  disabled={pageIdx >= ECOUNT_PAGES.length - 1}
-                  onClick={() => goEcountPage(pageIdx + 1)}
+                  disabled={safeEcountIdx >= ECOUNT_PAGES.length - 1}
+                  onClick={() => goEcountPage(safeEcountIdx + 1)}
                 >
                   다음
                   <ArrowRightIcon />

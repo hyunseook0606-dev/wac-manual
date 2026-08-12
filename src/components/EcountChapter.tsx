@@ -9,16 +9,24 @@ export type EcountStep = {
   imgCap?: string;
 };
 
-export const ECOUNT_PAGES: {
+export type EcountManualPage = {
   id: string;
   title: string;
   sub: string;
+  intro: string[];
   steps: EcountStep[];
-}[] = [
+  summary: string[];
+};
+
+export const ECOUNT_PAGES: EcountManualPage[] = [
   {
     id: "sales-entry-basics",
     title: "판매입력 — 기본 입력",
     sub: "메뉴 이동 · 거래처 · 담당자 · 창고 · 특이사항 · 품목",
+    intro: [
+      "주문 들어온 품목을 보고 **재고 I → 판매 → 판매입력**에서 입력합니다.",
+      "아래 번호 순서대로 따라가면 됩니다.",
+    ],
     steps: [
       {
         no: "01",
@@ -100,6 +108,82 @@ export const ECOUNT_PAGES: {
         imgCap: "품목 선택 후 수량만 입력",
       },
     ],
+    summary: [
+      "판매입력 열기",
+      "거래처 · 온라인 · 본사창고 · 특이사항",
+      "품목 검색 후 수량 입력",
+    ],
+  },
+  {
+    id: "print-invoice-packing",
+    title: "인보이스 · 패킹리스트 출력",
+    sub: "판매조회 · 전체선택 · 하단 인쇄 · packing_new",
+    intro: [
+      "판매입력으로 만든 전표는 **재고 I → 판매 → 판매조회**에서 확인합니다.",
+      "아래에서 **인보이스**와 **패킹리스트** 뽑는 순서를 따라가면 됩니다.",
+    ],
+    steps: [
+      {
+        no: "01",
+        title: "판매조회 열기",
+        body: [
+          "경로: **재고 I → 영업관리 → 판매 → 판매조회**",
+          "이전에 판매입력한 전표가 리스트로 보입니다.",
+          "일자는 금일(오늘) 기준으로 검색하면 됩니다.",
+        ],
+        img: "/ecount/07-sales-inquiry.png?v=3",
+        imgCap: "판매조회 — 오늘 입력한 전표 목록",
+      },
+      {
+        no: "02",
+        title: "일자-No. 옆 네모로 전체 선택",
+        body: [
+          "표 맨 위 **일자-No.** 왼쪽 체크박스를 누르면 **현재 페이지**가 전체 선택됩니다.",
+          "표 안 주황색 **인쇄** 버튼이 아니라, 화면 **맨 아래 하단 「인쇄」**를 누릅니다.",
+        ],
+        warn: "페이지가 2장 이상이면 페이지별로 선택해야 합니다. 1페이지에서 전체 선택해도 2페이지는 선택되지 않습니다.",
+        tip: "아침 패킹리스트 뽑을 때: 1페이지 선택 → 인쇄 → 2페이지로 이동 → 다시 선택 → 인쇄",
+        img: "/ecount/08-inquiry-selected.png?v=3",
+        imgCap: "일자-No. 왼쪽 체크 = 현재 페이지만 전체 선택",
+      },
+      {
+        no: "03",
+        title: "거래명세서 = 인보이스",
+        body: [
+          "하단 **인쇄**를 누르면 **거래명세서** 창이 뜹니다.",
+          "기본으로 보이는 양식이 **인보이스**(예: Wmart기본)입니다.",
+        ],
+        img: "/ecount/09-invoice.png?v=3",
+        imgCap: "거래명세서 — WMART INVOICE(인보이스)",
+      },
+      {
+        no: "04",
+        title: "패킹리스트는 packing_new",
+        body: [
+          "같은 거래명세서 창 왼쪽 아래 양식 목록에서 **Wmart기본** 대신 **Packing_new**를 고릅니다.",
+          "그러면 **WMART Packing List**(패킹리스트)가 뜹니다.",
+          "그다음 창 안의 **인쇄**로 출력하면 됩니다.",
+        ],
+        tip: "인보이스 ↔ 패킹리스트는 양식만 바꾸면 됩니다. 창을 새로 열 필요 없습니다.",
+        img: "/ecount/10-template-packing.png?v=3",
+        imgCap: "양식 선택 — Packing_new",
+      },
+      {
+        no: "05",
+        title: "패킹리스트 확인",
+        body: [
+          "Packing_new를 고르면 위치·이미지가 보이는 **패킹리스트** 화면이 됩니다.",
+          "특이사항(창고)도 여기에 함께 보입니다.",
+        ],
+        img: "/ecount/11-packing-list.png?v=3",
+        imgCap: "WMART Packing List 예시",
+      },
+    ],
+    summary: [
+      "판매조회에서 금일 전표 확인",
+      "일자-No. 체크(페이지별) → 하단 인쇄",
+      "인보이스(Wmart기본) / 패킹리스트(Packing_new)",
+    ],
   },
 ];
 
@@ -124,11 +208,11 @@ export function EcountChapter({ pageIndex }: Props) {
   return (
     <div className="ecount-page">
       <div className="rule-callout">
-        <p>
-          주문 들어온 품목을 보고{" "}
-          <strong>재고 I → 판매 → 판매입력</strong>에서 입력합니다.
-        </p>
-        <p className="rule-callout-next">아래 번호 순서대로 따라가면 됩니다.</p>
+        {page.intro.map((line, i) => (
+          <p key={line} className={i > 0 ? "rule-callout-next" : undefined}>
+            {renderBold(line)}
+          </p>
+        ))}
       </div>
 
       {page.steps.map((step) => (
@@ -189,9 +273,9 @@ export function EcountChapter({ pageIndex }: Props) {
         <div className="callout-body">
           <span className="callout-label">여기까지 핵심</span>
           <ul>
-            <li>판매입력 열기</li>
-            <li>거래처 · 온라인 · 본사창고 · 특이사항</li>
-            <li>품목 검색 후 수량 입력</li>
+            {page.summary.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
           </ul>
         </div>
       </div>

@@ -5,3 +5,11 @@ dist
 .env
 .env.*
 !.env.example
+
+# Vercel local link (project id stays on machine / dashboard)
+.vercel
+
+# source / edit leftovers not used by the app
+public/labels/*-raw.png
+*.docx
+docs/

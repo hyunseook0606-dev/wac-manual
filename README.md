@@ -1,28 +1,21 @@
-# WAC / 인턴 WMART 메뉴얼
+# W MART 인턴 메뉴얼
 
-웹: https://wac-warehouse-manual.vercel.app  
-저장소: https://github.com/hyunseook0606-dev/wac-manual
+홍콩 인턴·신규 직원용 창고 / ECOUNT 메뉴얼입니다.
 
-메인 화면은 **인턴 WMART 메뉴얼** 허브입니다.
+**라이브:** https://wac-warehouse-manual.vercel.app  
+**저장소:** https://github.com/hyunseook0606-dev/wac-manual
+
+한국·홍콩 어디서든 위 링크로 열립니다.
 
 ---
 
-## 구조
+## 구성
 
 | 경로 | 내용 |
 |------|------|
-| `#/` | 홈 (창고 / ECOUNT 선택) |
-| `#/warehouse/0` | 창고 메뉴얼 |
-| `#/ecount/0` | ECOUNT 메뉴얼 |
-
----
-
-## 인턴이 수정할 때
-
-1. GitHub에서 **Download ZIP**
-2. Cursor / Claude Code로 폴더 열기
-3. AI한테 원하는 수정 말하기
-4. 결과는 GitHub / 본인 Vercel / 드라이브 중 편한 방식으로 공유
+| `#/` | 홈 (창고 / ECOUNT) |
+| `#/warehouse/0` | 창고 작업 수칙 · 도면 |
+| `#/ecount/0` | 판매입력 · 인보이스 · 패킹리스트 |
 
 ---
 

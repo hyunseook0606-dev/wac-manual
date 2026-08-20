@@ -494,32 +494,112 @@ img {
 }
 
 @media (max-width: 820px) {
+  .hub-shell {
+    height: auto;
+    max-height: none;
+    min-height: 100dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .hub-premium {
-    width: min(1120px, calc(100% - 24px));
+    width: min(1120px, calc(100% - 28px));
+    height: auto;
+    min-height: 100dvh;
+    justify-content: flex-start;
+    padding: 28px 0 36px;
   }
 
-  .hub-premium .hub-units {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  .hub-premium .hub-stage {
+    justify-content: flex-start;
   }
 
-  .hub-unit-desc {
-    display: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .hub-premium .hub-units {
-    grid-template-columns: 1fr;
+  .hub-premium .hub-brand {
+    width: min(168px, 46vw);
   }
 
-  .hub-unit-desc {
-    display: block;
+  .hub-premium .hub-kicker {
+    margin: 14px 0 6px;
+  }
+
+  .hub-premium .hub-headline {
+    font-size: clamp(1.55rem, 7vw, 2.2rem);
+    line-height: 1.15;
   }
 
   .hub-premium .hub-lead {
     white-space: normal;
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .hub-premium .hub-units {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 420px;
+    margin-top: 18px;
+  }
+
+  .hub-unit {
+    grid-template-rows: auto 56px auto auto auto;
+    padding: 16px 16px 15px;
+  }
+
+  .hub-unit-logo-wrap {
+    height: 56px;
+  }
+
+  .hub-unit-logo {
+    max-width: 128px;
+  }
+
+  .hub-unit-logo-express {
+    max-width: 140px;
+  }
+
+  .hub-unit-title {
+    font-size: 1.12rem;
+  }
+
+  .hub-unit-desc {
+    display: block;
+    min-height: 0;
     font-size: 0.9rem;
+  }
+
+  .hub-unit-cta {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hub-premium {
+    width: calc(100% - 20px);
+    padding: 22px 0 28px;
+  }
+
+  .hub-premium .hub-brand {
+    width: min(148px, 52vw);
+  }
+
+  .hub-premium .hub-headline {
+    font-size: clamp(1.45rem, 8vw, 1.85rem);
+  }
+
+  .hub-premium .hub-lead {
+    font-size: 0.9rem;
+    max-width: 30ch;
+  }
+
+  .hub-premium .hub-units {
+    max-width: none;
+  }
+
+  .hub-unit {
+    padding: 15px 14px 14px;
   }
 }
 
@@ -697,12 +777,42 @@ img {
 }
 
 @media (max-width: 720px) {
-  .hub-shell-light .hub-cards {
-    grid-template-columns: 1fr;
+  .hub-shell-light {
+    display: block;
+    min-height: 100dvh;
+    padding: 24px 16px 32px;
+  }
+
+  .hub-shell-light .hub {
+    width: 100%;
+  }
+
+  .hub-shell-light .hub-title-row {
+    gap: 12px;
+    margin-bottom: 10px;
   }
 
   .hub-shell-light .hub-logo {
     width: 56px;
+  }
+
+  .hub-shell-light .hub-title-text h1 {
+    font-size: clamp(1.35rem, 6.5vw, 1.75rem);
+  }
+
+  .hub-shell-light .hub-lead {
+    max-width: none;
+    font-size: 0.95rem;
+  }
+
+  .hub-shell-light .hub-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hub-shell-light .hub-card {
+    min-height: 0;
+    padding: 18px 16px;
   }
 }
 

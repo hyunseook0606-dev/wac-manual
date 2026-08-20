@@ -326,7 +326,7 @@ img {
   padding: clamp(16px, 2.4vh, 28px) 0 clamp(18px, 2.8vh, 32px);
 }
 
-.hub-stage {
+.hub-premium .hub-stage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -336,7 +336,7 @@ img {
   padding: 0;
 }
 
-.hub-hero {
+.hub-premium .hub-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -344,14 +344,14 @@ img {
   width: 100%;
 }
 
-.hub-brand {
+.hub-premium .hub-brand {
   width: min(220px, 52vw);
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-.hub-kicker {
+.hub-premium .hub-kicker {
   margin: clamp(12px, 2vh, 18px) 0 8px;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
@@ -360,7 +360,7 @@ img {
   font-weight: 800;
 }
 
-.hub-headline {
+.hub-premium .hub-headline {
   margin: 0;
   font-size: clamp(1.9rem, 4.6vw, 3.4rem);
   font-weight: 800;
@@ -369,13 +369,13 @@ img {
   color: #1a1a1a;
 }
 
-.hub-headline span {
+.hub-premium .hub-headline span {
   display: block;
   margin-top: 0.08em;
   color: #9a4a12;
 }
 
-.hub-lead {
+.hub-premium .hub-lead {
   margin: 10px 0 0;
   max-width: 100%;
   color: rgba(50, 30, 15, 0.72);
@@ -384,7 +384,7 @@ img {
   white-space: nowrap;
 }
 
-.hub-units {
+.hub-premium .hub-units {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -498,7 +498,7 @@ img {
     width: min(1120px, calc(100% - 24px));
   }
 
-  .hub-units {
+  .hub-premium .hub-units {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
@@ -509,7 +509,7 @@ img {
 }
 
 @media (max-width: 560px) {
-  .hub-units {
+  .hub-premium .hub-units {
     grid-template-columns: 1fr;
   }
 
@@ -517,7 +517,7 @@ img {
     display: block;
   }
 
-  .hub-lead {
+  .hub-premium .hub-lead {
     white-space: normal;
     font-size: 0.9rem;
   }
@@ -547,6 +547,8 @@ img {
 
 .hub-shell-light .hub-hero {
   margin-bottom: 22px;
+  display: block;
+  text-align: left;
 }
 
 .hub-shell-light .hub-title-row {
@@ -587,6 +589,7 @@ img {
   color: var(--muted);
   font-size: 1rem;
   line-height: var(--lh);
+  white-space: normal;
 }
 
 .hub-back {

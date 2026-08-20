@@ -335,6 +335,39 @@ img {
   animation: hub-logo-float 4s ease-in-out infinite;
 }
 
+.hub-logo-wac {
+  width: min(220px, 58vw);
+}
+
+.hub-back {
+  display: inline-flex;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hub-back:hover {
+  color: var(--ink);
+}
+
+.hub-card-logo {
+  width: min(140px, 46%);
+  height: auto;
+  display: block;
+  margin: 4px 0 2px;
+}
+
+.hub-card-logo-express {
+  width: min(120px, 42%);
+  border-radius: 8px;
+  background: #000;
+}
+
 .hub-title-text {
   min-width: 0;
 }
@@ -458,6 +491,26 @@ img {
 
 .hub-card-ecount {
   border-color: #1d4f7c;
+}
+
+.hub-card-express {
+  border-color: #2a2a2a;
+  opacity: 0.78;
+  cursor: not-allowed;
+}
+
+.hub-card-express:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--paper);
+}
+
+.hub-card-wmart {
+  border-color: #c45c16;
+}
+
+.hub-card:disabled {
+  pointer-events: none;
 }
 
 .hub-card-no {

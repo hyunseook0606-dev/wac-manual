@@ -17,6 +17,7 @@ import { EcountSidebar } from "./components/EcountSidebar";
 import { RulesChapter, RULE_PAGES } from "./components/RulesChapter";
 import { MapChapter } from "./components/MapChapter";
 import { HubPage } from "./components/HubPage";
+import { WmartHubPage } from "./components/WmartHubPage";
 import { EcountChapter, ECOUNT_PAGES } from "./components/EcountChapter";
 import "./chapters.css";
 
@@ -41,6 +42,9 @@ const WAREHOUSE_PAGES: WarehousePage[] = [
 function parseHash(): { manual: ManualId; page: number } {
   const raw = window.location.hash.replace(/^#\/?/, "");
   if (!raw || raw === "hub") return { manual: "hub", page: 0 };
+  if (raw === "wmart" || raw.startsWith("wmart/")) {
+    return { manual: "wmart", page: 0 };
+  }
   if (raw.startsWith("warehouse")) {
     const n = Number(raw.split("/")[1] ?? 0);
     return {
@@ -61,6 +65,10 @@ function parseHash(): { manual: ManualId; page: number } {
 function setHash(manual: ManualId, page = 0) {
   if (manual === "hub") {
     window.location.hash = "#/";
+    return;
+  }
+  if (manual === "wmart") {
+    window.location.hash = "#/wmart";
     return;
   }
   window.location.hash = `#/${manual}/${page}`;
@@ -89,6 +97,7 @@ export default function App() {
   }, []);
 
   const goHub = () => setHash("hub");
+  const goWmartHub = () => setHash("wmart");
   const openWarehouse = () => setHash("warehouse", 0);
   const openEcount = () => setHash("ecount", 0);
 
@@ -109,7 +118,19 @@ export default function App() {
   if (manual === "hub") {
     return (
       <div className="hub-shell">
-        <HubPage onOpenWarehouse={openWarehouse} onOpenEcount={openEcount} />
+        <HubPage onOpenWmart={goWmartHub} />
+      </div>
+    );
+  }
+
+  if (manual === "wmart") {
+    return (
+      <div className="hub-shell">
+        <WmartHubPage
+          onBack={goHub}
+          onOpenWarehouse={openWarehouse}
+          onOpenEcount={openEcount}
+        />
       </div>
     );
   }
@@ -122,7 +143,7 @@ export default function App() {
         <EcountSidebar
           pageIndex={safeEcountIdx}
           onSelectPage={goEcountPage}
-          onHome={goHub}
+          onHome={goWmartHub}
           open={navOpen}
         />
         <main className="main">
@@ -167,8 +188,8 @@ export default function App() {
                   <ArrowLeftIcon />
                   이전
                 </button>
-                <button type="button" onClick={goHub}>
-                  홈
+                <button type="button" onClick={goWmartHub}>
+                  W MART 홈
                 </button>
                 <button
                   type="button"
@@ -195,7 +216,7 @@ export default function App() {
       <Sidebar
         chapter={chapter}
         onSelect={goWarehouseChapter}
-        onHome={goHub}
+        onHome={goWmartHub}
         open={navOpen}
       />
 
@@ -249,8 +270,8 @@ export default function App() {
                 <ArrowLeftIcon />
                 이전
               </button>
-              <button type="button" onClick={goHub}>
-                홈
+              <button type="button" onClick={goWmartHub}>
+                W MART 홈
               </button>
               <button
                 type="button"

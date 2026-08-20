@@ -27,7 +27,7 @@ export type LocationData = {
 };
 
 /** Top-level manuals (separate from each other) */
-export type ManualId = "hub" | "warehouse" | "ecount";
+export type ManualId = "hub" | "wmart" | "warehouse" | "ecount";
 
 /** Warehouse sidebar chapters */
 export type WarehouseChapterId = "rules" | "map";

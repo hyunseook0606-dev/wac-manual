@@ -23,11 +23,6 @@ const fadeUp = {
 export function HubPage({ onOpenWmart }: Props) {
   return (
     <div className="hub-shell">
-      <div className="hub-hero-bg" aria-hidden="true">
-        <img src="/hub-hero.jpg" alt="" />
-        <div className="hub-hero-veil" />
-      </div>
-
       <div className="hub hub-premium">
         <motion.header
           className="hub-top"

@@ -307,36 +307,12 @@ img {
   height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
-  color: #182033;
-  background: #eef3f8;
-}
-
-.hub-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hub-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  transform: scale(1.02);
-}
-
-.hub-hero-veil {
-  position: absolute;
-  inset: 0;
-  /* light wash only — keep airplane visible, protect navy/orange logo */
+  color: #1a1a1a;
   background:
-    linear-gradient(
-      100deg,
-      rgba(255, 252, 248, 0.88) 0%,
-      rgba(255, 252, 248, 0.55) 34%,
-      rgba(255, 252, 248, 0.12) 62%,
-      rgba(255, 252, 248, 0.08) 100%
-    );
+    radial-gradient(ellipse 90% 70% at 12% 8%, rgba(255, 170, 90, 0.55), transparent 55%),
+    radial-gradient(ellipse 70% 55% at 92% 12%, rgba(255, 120, 40, 0.28), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 70% 95%, rgba(255, 200, 140, 0.35), transparent 55%),
+    linear-gradient(165deg, #fff6ee 0%, #ffe4cc 42%, #ffd4a8 100%);
 }
 
 .hub-premium {
@@ -364,8 +340,9 @@ img {
   align-items: center;
   padding: 10px 14px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 10px 30px rgba(24, 32, 51, 0.08);
+  background: #fff;
+  border: 1px solid rgba(196, 92, 22, 0.12);
+  box-shadow: 0 10px 28px rgba(140, 70, 20, 0.1);
 }
 
 .hub-brand {
@@ -378,7 +355,7 @@ img {
   font-size: 0.74rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(24, 32, 51, 0.62);
+  color: rgba(90, 50, 20, 0.7);
   font-weight: 700;
 }
 
@@ -407,19 +384,19 @@ img {
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1.05;
-  color: #121826;
+  color: #1a1a1a;
 }
 
 .hub-headline span {
   display: block;
   margin-top: 0.08em;
-  color: #1d4f7c;
+  color: #9a4a12;
 }
 
 .hub-lead {
   margin: 10px 0 0;
   max-width: 40ch;
-  color: rgba(24, 32, 51, 0.72);
+  color: rgba(50, 30, 15, 0.72);
   font-size: clamp(0.92rem, 1.5vw, 1.02rem);
   line-height: 1.55;
 }
@@ -439,12 +416,11 @@ img {
   padding: 14px 16px 14px;
   text-align: left;
   text-decoration: none;
-  color: #121826;
-  border: 1px solid rgba(24, 32, 51, 0.1);
+  color: #1a1a1a;
+  border: 1px solid rgba(196, 92, 22, 0.16);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 36px rgba(24, 32, 51, 0.1);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(140, 70, 20, 0.1);
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
@@ -453,8 +429,8 @@ img {
 
 .hub-unit:hover {
   transform: translateY(-3px);
-  border-color: rgba(196, 92, 22, 0.35);
-  box-shadow: 0 18px 42px rgba(24, 32, 51, 0.14);
+  border-color: rgba(196, 92, 22, 0.45);
+  box-shadow: 0 18px 40px rgba(140, 70, 20, 0.16);
 }
 
 .hub-unit-meta {
@@ -468,14 +444,14 @@ img {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(24, 32, 51, 0.45);
+  color: rgba(90, 50, 20, 0.45);
 }
 
 .hub-unit-tag {
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1d4f7c;
+  color: #c45c16;
   font-weight: 700;
 }
 
@@ -500,7 +476,7 @@ img {
 
 .hub-unit em {
   font-style: normal;
-  color: rgba(24, 32, 51, 0.62);
+  color: rgba(50, 30, 15, 0.62);
   font-size: 0.86rem;
   line-height: 1.4;
 }

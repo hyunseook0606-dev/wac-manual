@@ -117,8 +117,20 @@ def process_wmart_logo() -> None:
     bbox = out.getbbox()
     if bbox:
         x0, y0, x1, y1 = bbox
-        card_h = int((y1 - y0) * 0.68)
-        card = out.crop((x0, y0, x1, y0 + card_h))
+        tagline_y = y1
+        px = out.load()
+        for y in range(y0, y1):
+            gray = sum(
+                1
+                for x in range(x0, x1, 8)
+                if px[x, y][3] > 180
+                and max(px[x, y][:3]) < 130
+                and min(px[x, y][:3]) > 45
+            )
+            if gray > 6:
+                tagline_y = y
+                break
+        card = out.crop((x0, y0, x1, max(y0 + 1, tagline_y - 6)))
         card.save(PUBLIC / "wmart-card-logo.png", optimize=True)
         print("wmart-card-logo", card.size)
     print("wmart-logo", out.size)

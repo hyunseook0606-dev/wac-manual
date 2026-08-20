@@ -24,54 +24,31 @@ export function HubPage({ onOpenWmart }: Props) {
   return (
     <div className="hub-shell">
       <div className="hub hub-premium">
-        <motion.header
-          className="hub-top"
-          custom={0}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-        >
-          <div className="hub-brand-wrap">
-            <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
-          </div>
-          <p className="hub-top-note">WAC Group · Intern Onboarding</p>
-        </motion.header>
-
         <section className="hub-stage">
-          <motion.p
-            className="hub-kicker"
-            custom={1}
+          <motion.div
+            className="hub-hero"
+            custom={0}
             variants={fadeUp}
             initial="hidden"
             animate="show"
           >
-            Intern Manual
-          </motion.p>
+            <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
 
-          <motion.h1
-            className="hub-headline"
-            custom={2}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-          >
-            WAC 인턴 메뉴얼
-            <span>사업별 온보딩을 한곳에서</span>
-          </motion.h1>
+            <p className="hub-kicker">Intern Manual</p>
 
-          <motion.p
-            className="hub-lead"
-            custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-          >
-            W MART와 W Express의 실무 가이드를 선택해 바로 시작하세요.
-          </motion.p>
+            <h1 className="hub-headline">
+              WAC 인턴 메뉴얼
+              <span>사업별 온보딩을 한곳에서</span>
+            </h1>
+
+            <p className="hub-lead">
+              W MART와 W Express의 실무 가이드를 선택해 바로 시작하세요.
+            </p>
+          </motion.div>
 
           <motion.div
             className="hub-units"
-            custom={4}
+            custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="show"

@@ -116,16 +116,12 @@ export default function App() {
   };
 
   if (manual === "hub") {
-    return (
-      <div className="hub-shell">
-        <HubPage onOpenWmart={goWmartHub} />
-      </div>
-    );
+    return <HubPage onOpenWmart={goWmartHub} />;
   }
 
   if (manual === "wmart") {
     return (
-      <div className="hub-shell">
+      <div className="hub-shell hub-shell-light">
         <WmartHubPage
           onBack={goHub}
           onOpenWarehouse={openWarehouse}

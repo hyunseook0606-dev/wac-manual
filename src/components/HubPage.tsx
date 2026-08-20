@@ -8,13 +8,13 @@ type Props = {
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 18 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.12 + i * 0.1,
-      duration: 0.7,
+      delay: 0.08 + i * 0.08,
+      duration: 0.55,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
@@ -36,7 +36,9 @@ export function HubPage({ onOpenWmart }: Props) {
           initial="hidden"
           animate="show"
         >
-          <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
+          <div className="hub-brand-wrap">
+            <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
+          </div>
           <p className="hub-top-note">WAC Group · Intern Onboarding</p>
         </motion.header>
 
@@ -87,7 +89,7 @@ export function HubPage({ onOpenWmart }: Props) {
             >
               <span className="hub-unit-meta">
                 <span className="hub-unit-no">01</span>
-                <span className="hub-unit-tag">External</span>
+                <span className="hub-unit-tag">Fulfillment</span>
               </span>
               <img
                 className="hub-unit-logo hub-unit-logo-express"
@@ -95,7 +97,7 @@ export function HubPage({ onOpenWmart }: Props) {
                 alt="W Express"
               />
               <strong>W Express 메뉴얼</strong>
-              <em>이커머스 풀필먼트 · 검수·보관·출고·반품 · 재고관리</em>
+              <em>검수·보관·출고·반품 · 재고관리</em>
               <span className="hub-unit-cta">
                 Google Slides 열기
                 <span aria-hidden="true">↗</span>
@@ -105,7 +107,7 @@ export function HubPage({ onOpenWmart }: Props) {
             <button type="button" className="hub-unit" onClick={onOpenWmart}>
               <span className="hub-unit-meta">
                 <span className="hub-unit-no">02</span>
-                <span className="hub-unit-tag">Internal</span>
+                <span className="hub-unit-tag">Warehouse</span>
               </span>
               <img
                 className="hub-unit-logo"
@@ -113,7 +115,7 @@ export function HubPage({ onOpenWmart }: Props) {
                 alt="W MART"
               />
               <strong>W MART 메뉴얼</strong>
-              <em>창고 피킹·패킹 · ECOUNT 판매입력 · 인보이스</em>
+              <em>창고 피킹·패킹 · ECOUNT</em>
               <span className="hub-unit-cta">
                 메뉴얼 열기
                 <span aria-hidden="true">→</span>

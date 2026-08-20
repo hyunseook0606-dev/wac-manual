@@ -31,9 +31,7 @@ export function HubPage({ onOpenWmart }: Props) {
           initial="hidden"
           animate="show"
         >
-          <div className="hub-brand-wrap">
-            <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
-          </div>
+          <img className="hub-brand" src="/wac-logo.png" alt="WAC Logistics" />
           <p className="hub-top-note">WAC Group · Intern Onboarding</p>
         </motion.header>
 

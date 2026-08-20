@@ -9,7 +9,11 @@ dist
 # Vercel local link (project id stays on machine / dashboard)
 .vercel
 
-# source / edit leftovers not used by the app
+# Manual / build leftovers not used by the deployed site
 public/labels/*-raw.png
 *.docx
+*.pptx
+*.bat
 docs/
+scripts/
+public/wac-mark.png

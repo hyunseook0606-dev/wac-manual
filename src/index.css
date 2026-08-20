@@ -410,7 +410,8 @@ img {
 
 .hub-unit {
   display: grid;
-  gap: 6px;
+  grid-template-rows: auto 68px auto auto auto;
+  gap: 0;
   align-content: start;
   min-height: 0;
   padding: 14px 16px 14px;
@@ -455,26 +456,40 @@ img {
   font-weight: 700;
 }
 
+.hub-unit-logo-wrap {
+  height: 68px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
 .hub-unit-logo {
-  width: min(118px, 42%);
-  height: auto;
-  margin: 2px 0 0;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
+  display: block;
+  max-height: 100%;
+  width: auto;
+  max-width: 148px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hub-unit-logo-mart {
+  max-width: 132px;
 }
 
 .hub-unit-logo-express {
-  width: min(132px, 48%);
+  max-width: 156px;
 }
 
-.hub-unit strong {
+.hub-unit-title {
+  margin-top: 10px;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
 
-.hub-unit em {
+.hub-unit-desc {
+  margin-top: 6px;
+  min-height: 2.5em;
   font-style: normal;
   color: rgba(50, 30, 15, 0.62);
   font-size: 0.86rem;
@@ -482,8 +497,9 @@ img {
 }
 
 .hub-unit-cta {
-  margin-top: 6px;
-  padding-top: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(196, 92, 22, 0.1);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -507,7 +523,7 @@ img {
     gap: 10px;
   }
 
-  .hub-unit em {
+  .hub-unit-desc {
     display: none;
   }
 }
@@ -517,7 +533,7 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .hub-unit em {
+  .hub-unit-desc {
     display: block;
   }
 

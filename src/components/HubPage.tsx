@@ -81,13 +81,15 @@ export function HubPage({ onOpenWmart }: Props) {
                 <span className="hub-unit-no">01</span>
                 <span className="hub-unit-tag">Warehouse</span>
               </span>
-              <img
-                className="hub-unit-logo"
-                src="/wmart-logo.png"
-                alt="W MART"
-              />
-              <strong>W MART 메뉴얼</strong>
-              <em>창고 피킹·패킹 · ECOUNT</em>
+              <div className="hub-unit-logo-wrap">
+                <img
+                  className="hub-unit-logo hub-unit-logo-mart"
+                  src="/wmart-card-logo.png"
+                  alt="W MART"
+                />
+              </div>
+              <strong className="hub-unit-title">W MART 메뉴얼</strong>
+              <em className="hub-unit-desc">창고 피킹·패킹 · ECOUNT</em>
               <span className="hub-unit-cta">
                 메뉴얼 열기
                 <span aria-hidden="true">→</span>
@@ -104,13 +106,15 @@ export function HubPage({ onOpenWmart }: Props) {
                 <span className="hub-unit-no">02</span>
                 <span className="hub-unit-tag">Fulfillment</span>
               </span>
-              <img
-                className="hub-unit-logo hub-unit-logo-express"
-                src="/w-express-logo.png"
-                alt="W Express"
-              />
-              <strong>W Express 메뉴얼</strong>
-              <em>검수·보관·출고·반품 · 재고관리</em>
+              <div className="hub-unit-logo-wrap">
+                <img
+                  className="hub-unit-logo hub-unit-logo-express"
+                  src="/w-express-logo.png"
+                  alt="W Express"
+                />
+              </div>
+              <strong className="hub-unit-title">W Express 메뉴얼</strong>
+              <em className="hub-unit-desc">검수·보관·출고·반품 · 재고관리</em>
               <span className="hub-unit-cta">
                 Google Slides 열기
                 <span aria-hidden="true">↗</span>

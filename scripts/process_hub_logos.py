@@ -119,7 +119,8 @@ def process_wmart_logo() -> None:
         x0, y0, x1, y1 = bbox
         tagline_y = y1
         px = out.load()
-        for y in range(y0, y1):
+        search_start = y0 + int((y1 - y0) * 0.84)
+        for y in range(search_start, y1):
             gray = sum(
                 1
                 for x in range(x0, x1, 8)

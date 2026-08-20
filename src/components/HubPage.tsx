@@ -5,8 +5,8 @@ type Props = {
 export function HubPage({ onOpenWmart }: Props) {
   return (
     <div className="hub">
-      <header className="hub-hero">
-        <div className="hub-title-row hub-animate hub-animate-1">
+      <header className="hub-hero hub-animate hub-animate-1">
+        <div className="hub-title-row">
           <img
             className="hub-logo hub-logo-wac"
             src="/wac-logo.png"
@@ -15,20 +15,25 @@ export function HubPage({ onOpenWmart }: Props) {
           <div className="hub-title-text">
             <p className="hub-kicker">Intern Manual</p>
             <h1>WAC 인턴 메뉴얼</h1>
+            <p className="hub-lead">
+              각 사업별 온보딩 메뉴얼을 한곳에 모아 두었습니다. 아래에서 사업장을
+              선택해 바로 들어가세요.
+            </p>
           </div>
         </div>
-        <p className="hub-lead hub-animate hub-animate-2">
-          W Express와 W MART 메뉴얼을 나눠 두었습니다. 사업장을 골라 주세요.
-        </p>
+
+        <div className="hub-badges hub-animate hub-animate-2">
+          <span className="hub-badge">W Express Fulfillment & E-commerce Logistics</span>
+          <span className="hub-badge">W MART Warehouse & ECOUNT</span>
+        </div>
       </header>
 
       <div className="hub-cards">
-        <button
-          type="button"
+        <a
           className="hub-card hub-card-express hub-animate hub-animate-3"
-          disabled
-          aria-disabled="true"
-          title="곧 추가됩니다"
+          href="https://docs.google.com/presentation/d/1mSytr6-bSl01gl0j8bExCryC9Bd-9cIj/edit?usp=sharing&ouid=106832286164196570873&rtpof=true&sd=true"
+          target="_blank"
+          rel="noreferrer"
         >
           <span className="hub-card-no">01</span>
           <img
@@ -37,9 +42,9 @@ export function HubPage({ onOpenWmart }: Props) {
             alt="W Express"
           />
           <strong>W Express 메뉴얼</strong>
-          <em>준비 중 · 곧 추가됩니다</em>
-          <span className="hub-card-cta">Coming soon</span>
-        </button>
+          <em>검수·보관·출고·반품 · 재고관리(풀필먼트)</em>
+          <span className="hub-card-cta">Google Slides 열기 ↗</span>
+        </a>
 
         <button
           type="button"
